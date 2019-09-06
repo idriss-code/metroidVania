@@ -4,6 +4,13 @@
 #include <vector>
 using namespace std;
 #include "../Map/MapProto.h"
+
+#include "../CustomCollection.h"
+
+class Eni;
+class Bullet;
+class Item;
+
 class PlatformMap : public MapProto
 {
     public:
@@ -24,16 +31,21 @@ class PlatformMap : public MapProto
 
         virtual void goNextLevel()=0;
 
+        void TestActionTile();
+
+        CustomCollection<Eni> enis;
+        CustomCollection<Bullet> bullets;
+        CustomCollection<Item> items;
     private:
         PlatformMap();
 
         void playerMoov(int velX,int velY,SDL_Rect hitBox);
         void playerFallControle();
-        void newBowl();
 
         bool menu;
 
         int countDownBowl;
+
 };
 
 #endif // PLATFORMMAP_H

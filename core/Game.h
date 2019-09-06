@@ -21,6 +21,7 @@ class Game
 
         Scene* currentScene(){return m_currentScene;}
         void setCurrentScene(Scene* scene){m_currentScene=scene;}
+        void goScene(Scene* scene){m_currentScene->exit();setCurrentScene(scene);}
 
         void switchFullScreen();
         int screenW(){return m_screenW;};
@@ -28,7 +29,6 @@ class Game
 
 
     protected:
-
         int m_status;
         Scene* m_currentScene;
         bool FullScreen;

@@ -11,12 +11,12 @@ extern TTF_Font* texteFont;
 //  fonctionTTF.cpp
 extern SDL_Color ROUGE ;
 
-ScreenMessage::ScreenMessage(const char * text,Scene* parent):Scene(parent)
+ScreenMessage::ScreenMessage(const char * text,Scene* parent,int delay):Scene(parent)
 {
     //ctor
     sprintf(m_text,text);
     setRGB(0,0,0);
-    delay=50;
+    m_delay=delay;
     texte=TTF_RenderText_Blended(texteFont,text,ROUGE);
     if(parent != NULL)switchClean();
 }
@@ -46,7 +46,7 @@ void ScreenMessage::update(int dt)
             break;
     }
 
-    if(delay-- <= 0)loop=0;
+    if(m_delay-- <= 0)loop=0;
     if(game->status() == Game::QUIT)loop = 0;
 }
 
@@ -60,10 +60,10 @@ void ScreenMessage::draw()
     SDL_UpperBlit(texte,NULL,SDL_GetWindowSurface(ecran),&position);
 }
 
-void ScreenMessage::loach(const char * text,Scene* parent)
+void ScreenMessage::loach(const char * text,Scene* parent,int delay)
 {
     std::cerr<<"loach ScreenMessage"<<std::endl;
-    ScreenMessage* screenMessage = new ScreenMessage(text,parent);
+    ScreenMessage* screenMessage = new ScreenMessage(text,parent,delay);
     screenMessage->exec();
     delete screenMessage;
 }

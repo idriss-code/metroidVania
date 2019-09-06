@@ -21,7 +21,7 @@ Sortie::~Sortie()
 
 Sortie::action()
 {
-    game->setCurrentScene(m_destination);
+    game->goScene(m_destination);
     player.setPosition(m_x,m_y);
     return Game::EXIT_SCN;
 }

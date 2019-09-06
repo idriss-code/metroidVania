@@ -6,11 +6,11 @@
 class ScreenMessage : public Scene
 {
     public:
-        ScreenMessage(const char * text,Scene* parent);
+        ScreenMessage(const char * text,Scene* parent,int delay=50);
         virtual ~ScreenMessage();
         virtual void draw();
 
-        static void loach(const char * text,Scene* parent=NULL);
+        static void loach(const char * text,Scene* parent=NULL,int delay=50);
         static void loachBckGrnd(const char * text,int r,int g, int b);
 
     protected:
@@ -20,7 +20,7 @@ class ScreenMessage : public Scene
     private:
         char m_text[128];
         SDL_Surface *texte;
-        int delay;
+        int m_delay;
 };
 
 #endif // SCREENMESSAGE_H

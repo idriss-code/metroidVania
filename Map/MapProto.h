@@ -15,6 +15,7 @@ class MapProto : public Maploader, public Scene
         MapProto(const char* file,const char* TileSet,int Zoom=2);
         virtual ~MapProto();
         void addElement(MapElement* val,int position){mapElement[position]=val;}
+        MapElement* element(int val){return mapElement[val];}
         virtual void draw()=0;
         void drawMap();
         bool collisionTile(SDL_Rect hitBox,int tile);
@@ -24,6 +25,7 @@ class MapProto : public Maploader, public Scene
         int cameraX(){return m_cameraX;}
         int cameraY(){return m_cameraY;}
         SDL_Rect cameraBox();
+
 
     protected:
         virtual void load()=0;

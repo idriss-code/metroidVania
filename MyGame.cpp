@@ -5,18 +5,16 @@
 #include "menu/SousMenu.h"
 #include "menuItem/Quit.h"
 #include "menuItem/Continue.h"
-
-
-#include "Scene/TestScene.h"
-
 #include "core/Game.h"
+
+#include "level/Level1.h"
+#include "level/Level2.h"
 
 using namespace std;
 
 //  variables globales
 #include "Player.h"
 Player player;
-
 
 TTF_Font* numberFont=NULL;
 TTF_Font* texteFont=NULL;
@@ -42,6 +40,7 @@ MyGame::MyGame():Game(800,600)
 
 //*********************************** CHARGEMENT SCENE **********************************
     level1 = new Level1;
+    level2 = new Level2;
     this->setCurrentScene(level1);
 }
 
@@ -56,4 +55,12 @@ MyGame::~MyGame()
 
 }
 
-
+MapProto* MyGame::level(int val)
+{
+    switch(val){
+    case 1:
+        return level1;
+    case 2:
+        return level2;
+    }
+}

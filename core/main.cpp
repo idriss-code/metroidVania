@@ -9,7 +9,6 @@ version pré-alpha 0.17 Idriss Benhamadouche (benlamouche78) 2016/2018
 */
 
 #include "../MyGame.h"
-
 Game* game=NULL;
 
 int main ( int argc, char** argv )

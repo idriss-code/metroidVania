@@ -11,7 +11,7 @@ using namespace std;
 
 SDL_Window *ecran = NULL;//  chargé en variable globale pour simplifier la syntaxe
 
-Game::Game(int screenW ,int screenH ):m_status(PLAY),m_screenW(screenW),m_screenH(screenH)
+Game::Game(int screenW ,int screenH ):m_status(PLAY),m_screenH(screenH),m_screenW(screenW)
 {
     FullScreen=false;
     //ctor
@@ -39,7 +39,6 @@ Game::~Game()
 void Game::main()
 {
     while(this->status()!=QUIT){
-        cout<<"game main"<<endl;
         this->play();
         while(this->status()==PLAY){
             this->currentScene()->exec();

@@ -1,4 +1,4 @@
-#include "Level1.h"
+#include "Level2.h"
 #include <iostream>
 #include "../Player.h"
 #include "../MyGame.h"
@@ -6,47 +6,42 @@
 
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
-#include "../MapElement/Sortie.h"
 
 extern Game* game;
 
 extern Player player;
 
-Level1::Level1(): PlatformMap("data/map/metroid1.mp","data/map/caisse.png")
+Level2::Level2(): PlatformMap("data/map/metroid2.mp","data/map/caisse.png")
 {
     //ctor
 }
 
-Level1::~Level1()
+Level2::~Level2()
 {
     //dtor
 }
 
-void Level1::initPlayer()
+void Level2::initPlayer()
 {
     player.init(128,128);
 }
 
-void Level1::initEni()
+void Level2::initEni()
 {
-    enis.add(new WalkingEni(800,1000));
+    enis.add(new WalkingEni(800,950));
     enis.add(new Eni(200,1000));
     enis.add(new Eni(300,1000));
     enis.add(new Eni(400,1000));
     enis.add(new Eni(500,1000));
 
-    items.add(new Key(500,1000,1));
+    items.add(new Key(500,1100,1));
 
     Door* door = new Door(1);
-    door->remplace(2,4,this);
-    addElement(door,2);
-    addElement(new Sortie(dynamic_cast<MyGame *>(game)->level(2),80,1183),3);
+    door->remplace(3,2,this);
+    addElement(door,3);
 }
 
-
-
-//inutile
-void Level1::goNextLevel()
+void Level2::goNextLevel()
 {
     std::cout<<"goNextLevel"<<std::endl;
 
