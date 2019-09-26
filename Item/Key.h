@@ -10,13 +10,15 @@ class Key : public Item
         Key(int x,int y,int keyNumber);
         virtual ~Key();
 
-        virtual void action(Player* player);
+        virtual void action(Player* player,Scene* parent);
+        void draw(int camX,int camY);
 
     protected:
 
     private:
 
         int m_keyNumber;
+        SDL_Surface* sprite;
 };
 
 #endif // KEY_H

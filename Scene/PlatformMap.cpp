@@ -10,15 +10,20 @@ extern Player player;
 
 #include "../util/collision.h"
 #include "../util/benrandom.h"
+#include "../gfx/SDL2_rotozoom.h"
 
 #include "../Eni.h"
 #include "../Bullet.h"
 #include "../Item/Item.h"
 #include "../MapElement/MapElement.h"
 
+#include "BigMap.h"
+
+
 PlatformMap::PlatformMap(const char* file,const char* TileSet) : MapProto(file,TileSet)
 {
-    //ctor
+        RECT_H = 12 * 16 * 2;//zoom;
+        RECT_W = 12 * 16 * 2;//zoom;
 }
 
 PlatformMap::~PlatformMap()
@@ -28,24 +33,40 @@ PlatformMap::~PlatformMap()
 
 void PlatformMap::load()
 {
-    initPlayer();//  dans level
     initEni();//  dans level
     Bullet::load();
 
     countDownBowl=50;
 
+    menu=false;
+
+    //load background
+    SDL_Surface* sprite;
+    sprite=IMG_Load("./data/map/background.png");
+    bkgrnd=rotozoomSurfaceXY(sprite,0,4,4,0);
+    SDL_FreeSurface(sprite);
+    //end load background
+
     //itemInit
         //if key == true add item
 
-    std::cerr<<"load"<<std::endl;
+
+#ifdef DEBUG
+    std::cout<<"load debug"<<std::endl;
+#else
+    std::cout<<"load release"<<std::endl;
+#endif
+
 }
 
 void PlatformMap::unload()
 {
+    SDL_FreeSurface(bkgrnd);
     Bullet::unload();
     bullets.clear();
     enis.clear();
-    std::cerr<<"unload"<<std::endl;
+    items.clear();
+    std::cout<<"unload"<<std::endl;
 }
 
 void PlatformMap::input()
@@ -65,12 +86,12 @@ void PlatformMap::input()
                     case SDLK_RIGHT:
                     case SDLK_d:
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        player.goEast();
+                        if(event.key.repeat == 0)player.goEast();
                         break;
                     case SDLK_LEFT:
                     case SDLK_q:
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        player.goWest();
+                        if(event.key.repeat == 0)player.goWest();
                         break;
                     case SDLK_UP:
                     case SDLK_z:
@@ -80,7 +101,7 @@ void PlatformMap::input()
                     case SDLK_DOWN:
                     case SDLK_s:
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        player.goSouth();
+                        if(event.key.repeat == 0)player.goSouth();
                         break;
                     case SDLK_RETURN:
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
@@ -95,23 +116,23 @@ void PlatformMap::input()
                 {
                     case SDLK_RIGHT:
                     case SDLK_d:
-                        event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        player.stopEast();
+                        //event.key.keysym.sym=0;//evite les pb de repetition de touche
+                         if(!player.isHurt())player.stopEast();
                         break;
                     case SDLK_LEFT:
                     case SDLK_q:
-                        event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        player.stopWest();
+                        //event.key.keysym.sym=0;//evite les pb de repetition de touche
+                        if(!player.isHurt())player.stopWest();
                         break;
                     case SDLK_UP:
                     case SDLK_z:
-                        event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        player.stopNorth();
+                        //event.key.keysym.sym=0;//evite les pb de repetition de touche
+                        if(!player.isHurt())player.stopNorth();
                         break;
                     case SDLK_DOWN:
                     case SDLK_s:
-                        event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        player.stopSouth();
+                        //event.key.keysym.sym=0;//evite les pb de repetition de touche
+                        if(!player.isHurt())player.stopSouth();
                         break;
                     default:
                         break;
@@ -137,10 +158,14 @@ void PlatformMap::input()
 void PlatformMap::update(int dt)
 {
     if(menu){
-        MenuScene::loach(this);
+        //MenuScene::loach(this);
+        BigMap bigMap;
+        bigMap.exec();
+
         menu=false;
     }
 
+    player.hurtControl();
     player.fall();//chutte
     playerMoov(player.velX(),player.velY(),player.hitBox());
     playerFallControle();
@@ -150,6 +175,7 @@ void PlatformMap::update(int dt)
     while(eniIt.hasNext()){
         Eni* eni = eniIt.next();
         eni->update(this);
+        eni->fireUpdate(&bullets);
         if(boxCollision(player.hitBox(),eni->hitBox())){
             player.damage(2);
         }
@@ -160,7 +186,7 @@ void PlatformMap::update(int dt)
         Item* item = itemIt.next();
 
         if(boxCollision(player.hitBox(),item->hitBox())){
-            item->action(&player);
+            item->action(&player,this);
             itemIt.remove();
         }
     }
@@ -170,15 +196,28 @@ void PlatformMap::update(int dt)
         Bullet* bullet = bulletIt.next();
         bullet->update();
 
-        eniIt = enis.newIterator();
-        while(eniIt.hasNext()){
-            Eni* eni = eniIt.next();
-            if(pointCollision(bullet->GetposX(),bullet->GetposY(),eni->hitBox())){
-                player.gainXp(eni->xp(),this);
-                eniIt.remove();
+        if(bullet->GetTag()==Bullet::ENI){
+            if(pointCollision(bullet->GetposX(),bullet->GetposY(),player.hitBox())){
                 bulletIt.remove();
+                if(!player.isHurt())player.damage(1);
             }
         }
+
+        if(bullet->GetTag()==Bullet::AMI){
+            eniIt = enis.newIterator();
+            while(eniIt.hasNext()){
+                Eni* eni = eniIt.next();
+                if(pointCollision(bullet->GetposX(),bullet->GetposY(),eni->hitBox())){
+                    bulletIt.remove();
+                    eni->damage(1);
+                    if(eni->pv()<=0){
+                        player.gainXp(eni->xp(),this);
+                        eniIt.remove();
+                    }
+                }
+            }
+        }
+
     }
 
     //Gestion collision avec item
@@ -187,6 +226,10 @@ void PlatformMap::update(int dt)
     if(player.pv()<=0){
         cout<<"game over"<<endl;
     }
+
+//calcul place sur le big map
+    player.setCurrentRoom(level(),player.posX()/RECT_W+player.posY()/RECT_H*((tileWidth()*width())/RECT_W));
+    //place = player.posX()/RECT_W+player.posY()/RECT_H*((tileWidth()*width())/RECT_W);
 /*
     if(collisionTile(player.hitBox(),3)){
         goNextLevel();
@@ -196,8 +239,38 @@ void PlatformMap::update(int dt)
 
 void PlatformMap::draw()
 {
-    setCamera(player.posX()-game->screenW()/2,player.posY()-game->screenH()/2);
+    //Gestion de la camera
+    int camX;
+    int camY;
+    int levelWidth=tileWidth()*width();
+    int levelHeight=tileHeight()*height();
 
+    if(levelWidth<game->screenW()){//centrage si niveau plus petit que ecran
+            camX=(levelWidth-game->screenW())/2;
+    }else if(player.posX()+game->screenW()/2>levelWidth){//allignement a droite
+        camX=levelWidth-game->screenW();
+    }else{
+        // suivei du player
+        camX=player.posX()-game->screenW()/2;
+        //allignement a gauche
+        camX=camX<0?0:camX;
+    }
+    //idem pour l'axe Y
+    if(levelHeight<game->screenH()){//centrage si niveau plus petit que ecran
+            camY=(levelHeight-game->screenH())/2;
+    }else if(player.posY()+game->screenH()/2>levelHeight){//allignement a droite
+        camY=levelHeight-game->screenH();
+    }else{
+        // suivei du player
+        camY=player.posY()-game->screenH()/2;
+        //allignement a gauche
+        camY=camY<0?0:camY;
+    }
+
+    setCamera(camX,camY);
+
+
+    drawBackground();
     drawMap();
 
     CustomIterator<Item> itemIt = items.newIterator();
@@ -219,7 +292,38 @@ void PlatformMap::draw()
         bullet->draw(this->cameraX(),this->cameraY());
     }
 
-    player.draw();
+    player.draw(this->cameraX(),this->cameraY());
+}
+
+void PlatformMap::drawBackground()
+{
+    //SDL_SetColorKey(tileSet,SDL_TRUE ,SDL_MapRGBA(tileSet->format,0,0,0,0));
+    int levelWidth=tileWidth()*width();
+    int levelHeight=tileHeight()*height();
+
+
+    SDL_Rect pos;
+    SDL_Rect src;
+    pos.x=0;
+    pos.y=0;
+    src.x=0;
+    src.y=0;
+    src.w=levelWidth;
+    src.h=levelHeight;
+
+
+    if(levelWidth<game->screenW()){//centrage si niveau plus petit que ecran
+            src.x=pos.x=(game->screenW()-levelWidth)/2;
+    }
+
+     if(levelHeight<game->screenH()){//centrage si niveau plus petit que ecran
+            src.y=pos.y=(game->screenH()-levelHeight)/2;
+    }
+    src.y+=20;
+
+    SDL_BlitSurface(bkgrnd,&src,SDL_GetWindowSurface(ecran),&pos);
+
+
 }
 
 #define SGN(X) (((X)==0)?(0):(((X)<0)?(-1):(1)))
@@ -236,7 +340,7 @@ void PlatformMap::playerMoov(int velX,int velY,SDL_Rect hitBox)
 
     // gestion des platform
     if(velY>0){
-        SDL_Rect hitBoxTest=hitBox;
+        SDL_Rect hitBoxTest=player.hitBox();
         SDL_Rect hitBoxTile;
         hitBoxTest.x+=velX;
         hitBoxTest.y+=velY;
@@ -250,8 +354,8 @@ void PlatformMap::playerMoov(int velX,int velY,SDL_Rect hitBox)
                     hitBoxTile.x=i*tileWidth();
                     hitBoxTile.y=j*tileHeight();
                     if(boxCollision(hitBoxTest,hitBoxTile)){
-                        if(hitBox.y+hitBox.h<=hitBoxTile.y){
-                            player.setPosition(player.posX(),hitBoxTile.y-(hitBox.h/2+hitBox.h%2));
+                        if(player.hitBox().y+player.hitBox().h<=hitBoxTile.y){
+                            player.setPosition(player.posX(),hitBoxTile.y-(player.hitBox().h/2+player.hitBox().h%2));
                             velY=0;
                             player.stopFalling();
                             std::cerr<<"stop fall"<<std::endl;
@@ -264,7 +368,7 @@ void PlatformMap::playerMoov(int velX,int velY,SDL_Rect hitBox)
 
 
     //mouvement sans mur
-    if(testMoov(velX,velY,hitBox)){
+    if(testMoov(velX,velY,player.hitBox())){
         player.moov(velX,velY);
         return;
     }
@@ -272,7 +376,7 @@ void PlatformMap::playerMoov(int velX,int velY,SDL_Rect hitBox)
     //affinage avec mur
     for(int i=0;i<ABS(velX);i++)
     {
-        if (testMoov(SGN(velX),0,hitBox)) {
+        if (testMoov(SGN(velX),0,player.hitBox())) {
             player.moov(SGN(velX),0);
             hitBox.x+=SGN(velX);
         }else{
@@ -281,7 +385,7 @@ void PlatformMap::playerMoov(int velX,int velY,SDL_Rect hitBox)
     }
     for(int i=0;i<ABS(velY);i++)
     {
-        if (testMoov(0,SGN(velY),hitBox)){
+        if (testMoov(0,SGN(velY),player.hitBox())){
             player.moov(0,SGN(velY));
             hitBox.y+=SGN(velY);
         }else{
@@ -293,12 +397,13 @@ void PlatformMap::playerMoov(int velX,int velY,SDL_Rect hitBox)
 void PlatformMap::playerFallControle()
 {
     SDL_Rect hitBoxTest=player.hitBox();
-    hitBoxTest.y+=hitBoxTest.h+1;
+    hitBoxTest.y+=hitBoxTest.h;
     hitBoxTest.h=1;
     if(collisionWall(hitBoxTest)){
-        player.stopFalling();
+        if (player.velY()>0)player.stopFalling(),player.resetJump();
         return;
     }else if(collisionTile(hitBoxTest,2)){
+        player.resetJump();
         return;
     }else{
         player.startFalling();
@@ -321,12 +426,3 @@ void PlatformMap::TestActionTile()
            }
     }
 }
-
-
-
-void PlatformMap::restart()
-{
-    this->unload();
-    this->load();
-}
-

@@ -2,16 +2,16 @@
 #include <iostream>
 #include "../Player.h"
 #include "../MyGame.h"
-#include "../WalkingEni.h"
 
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
+#include "../MapElement/Sortie.h"
 
 extern Game* game;
 
 extern Player player;
 
-Level2::Level2(): PlatformMap("data/map/metroid2.mp","data/map/caisse.png")
+Level2::Level2(): PlatformMap("data/map/wescalier.mp","data/map/warped.png")
 {
     //ctor
 }
@@ -21,29 +21,17 @@ Level2::~Level2()
     //dtor
 }
 
-void Level2::initPlayer()
-{
-    player.init(128,128);
-}
-
 void Level2::initEni()
 {
-    enis.add(new WalkingEni(800,950));
-    enis.add(new Eni(200,1000));
-    enis.add(new Eni(300,1000));
-    enis.add(new Eni(400,1000));
-    enis.add(new Eni(500,1000));
 
-    items.add(new Key(500,1100,1));
+    Door* doorR = new Door(1);
+    doorR->remplace(0,this);
+    addElement(doorR,11);
 
-    Door* door = new Door(1);
-    door->remplace(3,2,this);
-    addElement(door,3);
-}
+    Door* doorL = new Door(1);
+    doorL->remplace(0,this);
+    addElement(doorL,10);
 
-void Level2::goNextLevel()
-{
-    std::cout<<"goNextLevel"<<std::endl;
-
-    //dynamic_cast<MyGame *>(game)->goScene(10);
+    addElement(new Sortie(dynamic_cast<MyGame *>(game)->level(1),1100,256),3);
+    addElement(new Sortie(dynamic_cast<MyGame *>(game)->level(3),52,288),4);
 }

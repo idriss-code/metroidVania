@@ -32,11 +32,11 @@ class MapProto : public Maploader, public Scene
         virtual void unload()=0;
         virtual void input()=0;
         virtual void update(int dt)=0;
-
+        SDL_Surface* tileSet;
 
     private:
         MapProto();
-        SDL_Surface* tileSet;
+
 
         MapElement* mapElement[100];
 

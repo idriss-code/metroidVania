@@ -7,6 +7,7 @@ using namespace std;
 
 class MapProto;
 class Player;
+class Scene;
 
 class Item
 {
@@ -14,14 +15,14 @@ class Item
         Item(int x,int y);
         virtual ~Item();
 
-        virtual void draw(int camX,int camY);
+        virtual void draw(int camX,int camY)=0;
 
         void setPosition(int x,int y){m_posX=x;m_posY=y;}
         int posX(){return m_posX;}
         int posY(){return m_posY;}
         int width(){return m_width;}
         int height(){return m_height;}
-        virtual void action(Player* player)=0;
+        virtual void action(Player* player,Scene* parent)=0;
 
         SDL_Rect hitBox()
         {
@@ -40,7 +41,7 @@ class Item
         int m_height;
 
 	private:
-		SDL_Surface *m_sprite;
+
 };
 
 #endif // ITEM_H

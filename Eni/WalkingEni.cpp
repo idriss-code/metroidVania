@@ -1,6 +1,7 @@
 #include "WalkingEni.h"
-#include "Scene/PlatformMap.h"
-#include "util/collision.h"
+#include "../Scene/PlatformMap.h"
+#include "../util/collision.h"
+#include "../MapElement/MapElement.h"
 
 WalkingEni::WalkingEni(int x,int y):Eni(x,y)
 {
@@ -53,13 +54,13 @@ void WalkingEni::recursiveMoov(int velX,int velY,SDL_Rect hitBox,MapProto* mapPr
         int test=true;
         for(int i=0;i< mapProto->width() && test;i++){
             for(int j=0;j< mapProto->height() && test;j++){
-                if(mapProto->obj(i,j) == 0){//mef!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if(mapProto->element(mapProto->obj(i,j))->isAWall()){
                     hitBoxTile.x=i*mapProto->tileWidth();
                     hitBoxTile.y=j*mapProto->tileHeight();
                     if(boxCollision(hitBoxTest,hitBoxTile))
                     {
                         test=false;
-                        if(hitBox.y+hitBox.h<=hitBoxTile.y && mapProto->obj(i,j-1) != 0){
+                        if(hitBox.y+hitBox.h<=hitBoxTile.y && ! mapProto->element(mapProto->obj(i,j-1))->isAWall()){
                             setPosition(posX(),hitBoxTile.y-(hitBox.h/2+hitBox.h%2));
                             //action collision sol
                             //m_velY=-ABS(m_velY);
@@ -67,20 +68,20 @@ void WalkingEni::recursiveMoov(int velX,int velY,SDL_Rect hitBox,MapProto* mapPr
                             falling=false;
                             //std::cerr<<"down"<<std::endl;
                         }
-                        if(hitBox.y>=hitBoxTile.y+hitBoxTile.h &&  mapProto->obj(i,j+1) != 0){
+                        if(hitBox.y>=hitBoxTile.y+hitBoxTile.h &&  ! mapProto->element(mapProto->obj(i,j+1))->isAWall()){
                             setPosition(posX(),hitBoxTile.y+hitBoxTile.h+(hitBox.h/2+hitBox.h%2));
                             //action collision plafond
                             m_velY=ABS(m_velY);
                             //std::cerr<<"up"<<std::endl;
                         }
 
-                        if(hitBox.x+hitBox.w<=hitBoxTile.x && mapProto->obj(i-1,j) != 0){
+                        if(hitBox.x+hitBox.w<=hitBoxTile.x && ! mapProto->element(mapProto->obj(i-1,j))->isAWall()){
                             setPosition(hitBoxTile.x-(hitBox.w/2+hitBox.w%2),posY());
                             //action collision mur droite
                             m_velX=-ABS(m_velX);
                             //std::cerr<<"right"<<std::endl;
                         }
-                        if(hitBox.x>=hitBoxTile.x+hitBoxTile.w && mapProto->obj(i+1,j) != 0){
+                        if(hitBox.x>=hitBoxTile.x+hitBoxTile.w && ! mapProto->element(mapProto->obj(i+1,j-1))->isAWall()){
                             setPosition(hitBoxTile.x+hitBoxTile.w+(hitBox.w/2+hitBox.w%2),posY());
                             //action collision mur guauche
                             m_velX=ABS(m_velX);

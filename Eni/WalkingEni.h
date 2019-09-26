@@ -1,7 +1,7 @@
 #ifndef WALKINGENI_H
 #define WALKINGENI_H
 
-#include "Eni.h"
+#include "../Eni.h"
 
 
 class WalkingEni : public Eni

@@ -2,11 +2,12 @@
 
  #include <cstdio>
     SDL_Color NOIR = {0, 0, 0};
-    SDL_Color VERT = {0, 240, 0};
-    SDL_Color GRIS = {50,50,50};
+    SDL_Color VERT = {0, 200, 0};
+    SDL_Color GRIS = {100,100,100};
     SDL_Color BLANC  = {255,255,255};
-    SDL_Color JAUNE  = {255,255,0};
+    SDL_Color JAUNE  = {200,200,0};
     SDL_Color ROUGE  = {255,0,0};
+    SDL_Color ROSE  = {178,0,255};
 
 void afficheTexte(SDL_Rect position,const char *txt,SDL_Window *ecran,TTF_Font *police,SDL_Color color)
 {

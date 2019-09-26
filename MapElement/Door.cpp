@@ -17,12 +17,12 @@ Door::~Door()
 bool Door::isAWall() const
 {
 	//si pas cle pas cle on passe pas
-	return ! player.getKey(keyNumber);
+	return ! player.key(keyNumber);
 }
 bool Door::doActionOnEnter() const
 {
 	//si cle ok on passe et on change la tile
-	return player.getKey(keyNumber);;;
+	return player.key(keyNumber);;;
 }
 
 int Door::action()
@@ -31,6 +31,7 @@ int Door::action()
 	//void setTile(int x,int y, int val){tileMap[x][y]=val;}
 	for (int i=0; i < map->width(); i++)
             for (int j=0; j < map->height(); j++)
-                if(map->tile(i,j)==aRemplacer)map->setTile(i,j,remplaceant);
+                //if(map->tile(i,j)==aRemplacer)map->setTile(i,j,remplaceant);
+                if(map->element(map->obj(i,j))== this)map->setTile(i,j,remplaceant);
 	return 0;
 }

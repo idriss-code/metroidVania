@@ -5,7 +5,9 @@
 
 class Level1;
 class Level2;
+class Level3;
 class MapProto;
+class TestScene;
 
 class MyGame : public Game
 {
@@ -18,8 +20,7 @@ class MyGame : public Game
     protected:
 
     private:
-        Level1* level1;
-        Level2* level2;
+        MapProto* m_level[100];
 
 };
 

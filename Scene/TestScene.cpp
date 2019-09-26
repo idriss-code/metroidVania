@@ -6,6 +6,7 @@
 #include <iostream>
 extern Game* game;
 
+
 TestScene::TestScene()
 {
     //ctor
@@ -21,13 +22,11 @@ void TestScene::load()
 {
     menu=false;
     message=false;
-    lune= IMG_Load("data/sprite/lune.png");
     std::cerr<<"load"<<std::endl;
 }
 
 void TestScene::unload()
 {
-    SDL_FreeSurface(lune);
     std::cerr<<"unload"<<std::endl;
 }
 
@@ -69,8 +68,5 @@ void TestScene::update(int dt)
 
 void TestScene::draw()
 {
-    SDL_Rect position;
-    position.x=SDL_GetWindowSurface(ecran)->w/2-lune->w/2;
-    position.y=SDL_GetWindowSurface(ecran)->h/2-lune->h/2;
-    SDL_UpperBlit(lune,NULL,SDL_GetWindowSurface(ecran),&position);
+
 }

@@ -18,7 +18,6 @@ class TestScene : public Scene
     private:
         bool menu;
         bool message;
-        SDL_Surface *lune;
 };
 
 #endif // TESTSCENE_H

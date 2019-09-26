@@ -28,6 +28,7 @@ MapProto::MapProto(const char* file,const char* TileSet,int Zoom): Maploader(fil
         m_tileWidth = tileWidth()*zoom;
         m_tileHeight = tileHeight()*zoom;
 
+
     // valeur par default des objet tuile
         MapElement* tempEl = new Plan;
         for(int i=0;i<100;i++){mapElement[i]=tempEl;}

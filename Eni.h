@@ -9,6 +9,8 @@
 using namespace std;
 
 class MapProto;
+class Bullet;
+template <class T> class CustomCollection;
 
 class Eni
 {
@@ -18,8 +20,9 @@ class Eni
 
         virtual void draw(int camX,int camY);
         virtual void update(MapProto* mapProto);
+        virtual void fireUpdate(CustomCollection<Bullet>*);
+        virtual void changeOrientation();
         void moov();
-        void changeDirection();
 
         void setPosition(int x,int y){m_posX=x;m_posY=y;}
         int posX(){return m_posX;}
@@ -27,7 +30,10 @@ class Eni
         int width(){return m_width;}
         int height(){return m_height;}
 
-        int xp(){return m_xp;};
+        int xp(){return m_xp;}
+        int pv(){return m_pv;}
+
+        void damage(int val){m_pv-=val; damaged=true;}
 
 
         SDL_Rect hitBox()
@@ -53,10 +59,26 @@ class Eni
         int m_velX;
         int m_velY;
 
+        SDL_Surface *m_sprite;
+        SDL_Surface *m_spriteI;
+        int spriteNumber;
 
-private:
-    SDL_Surface *m_sprite;
-    int m_xp;
+        int m_xp;
+
+        int spriteNumMax;
+        int spriteWidth;
+        int spriteHeight;
+        int spriteCountDown;
+        int animationDirection;
+
+        int m_pv;
+
+        int fireCooldown;
+        int fireTime;
+
+    private:
+
+        bool damaged;
 
 
 };

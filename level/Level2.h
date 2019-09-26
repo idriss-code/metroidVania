@@ -9,13 +9,12 @@ class Level2 : public PlatformMap
     public:
         Level2();
         virtual ~Level2();
+        int level(){return 2;}
 
     protected:
 
     private:
-        void initPlayer();
         void initEni() ;
-        void goNextLevel();//WTF
 };
 
 #endif // LEVEL2_H

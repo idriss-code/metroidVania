@@ -5,6 +5,7 @@ extern SDL_Color NOIR;
 extern SDL_Color VERT;
 extern SDL_Color GRIS;
 extern SDL_Color ROUGE;
+extern SDL_Color ROSE;
 
 Menu::Menu():m_x(0),m_y(0),m_longueur(150),m_hauteurLigne(10),m_menuParent(this)
 {
@@ -40,7 +41,7 @@ void Menu::affiche(SDL_Window *ecran)
     SDL_Rect pos=position();
     for(it=vec.begin();it!=vec.end();it++){
             if(it==m_actif){
-                afficheTexte(pos,(*it)->name(),ecran,m_police,ROUGE);
+                afficheTexte(pos,(*it)->name(),ecran,m_police,ROSE);
             }else{
                 afficheTexte(pos,(*it)->name(),ecran,m_police,GRIS);
             }

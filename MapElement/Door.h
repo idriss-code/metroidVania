@@ -17,14 +17,13 @@ class Door : public MapElement
         virtual bool isACombatZone() const {return false;}
 
         virtual int action();
-        void remplace(int src,int dest,MapProto* val){aRemplacer=src;remplaceant=dest;map=val;}
+        void remplace(int dest,MapProto* val){remplaceant=dest;map=val;}
 
     protected:
 
     private:
 		int keyNumber;
 		//position tile to change on open
-		int aRemplacer;
 		int remplaceant;
 
 		MapProto* map;

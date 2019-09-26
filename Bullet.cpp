@@ -5,12 +5,12 @@
 
 extern SDL_Window *ecran;
 
-Bullet::Bullet(int x, int y, float angle,from fm)
+Bullet::Bullet(int x, int y, float angle,from fm,int speed)
 {
     posX=x;
     posY=y;
-    velX=cos(angle)*25;
-    velY=sin(angle)*25;
+    velX=cos(angle)*speed;
+    velY=sin(angle)*speed;
     frm=fm;
 }
 

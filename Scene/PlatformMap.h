@@ -1,7 +1,6 @@
 #ifndef PLATFORMMAP_H
 #define PLATFORMMAP_H
 
-#include <vector>
 using namespace std;
 #include "../Map/MapProto.h"
 
@@ -18,26 +17,27 @@ class PlatformMap : public MapProto
         virtual ~PlatformMap();
         virtual void draw();
 
-        void restart();
-
     protected:
         virtual void input();
         virtual void load();
         virtual void unload();
         virtual void update(int dt);
 
-        virtual void initPlayer() = 0;
         virtual void initEni() = 0;
 
-        virtual void goNextLevel()=0;
+        virtual int level()=0;
 
         void TestActionTile();
 
         CustomCollection<Eni> enis;
         CustomCollection<Bullet> bullets;
         CustomCollection<Item> items;
+
+
     private:
         PlatformMap();
+
+        void drawBackground();
 
         void playerMoov(int velX,int velY,SDL_Rect hitBox);
         void playerFallControle();
@@ -45,6 +45,11 @@ class PlatformMap : public MapProto
         bool menu;
 
         int countDownBowl;
+
+        int RECT_H;
+        int RECT_W;
+
+        SDL_Surface* bkgrnd;
 
 };
 

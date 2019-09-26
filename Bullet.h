@@ -9,7 +9,7 @@ class Bullet
     public:
         enum from {AMI,ENI};
 
-        Bullet(int x, int y, float angle,from fm);
+        Bullet(int x, int y, float angle,from fm,int speed=25);
         virtual ~Bullet();
 
         from GetTag(){ return frm; }
