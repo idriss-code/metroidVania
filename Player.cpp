@@ -19,10 +19,10 @@ Player::Player():pvBarre(m_pv,m_pvMax),xpBarre(m_xp,m_xpLvlSuivant)
     m_height=64;
     m_width=20;
     speed=12;
-    spriteNumber=0;
+
     spriteWidth=80*2;
     spriteHeight=80*2;
-    status=STAND;
+
 
     SDL_Surface* sprite;
     //duckSprite
@@ -68,11 +68,7 @@ Player::Player():pvBarre(m_pv,m_pvMax),xpBarre(m_xp,m_xpLvlSuivant)
     SDL_FreeSurface(sprite);
 
 
-    m_xp=0;
-    m_lvl=1;
-    m_xpLvlSuivant=XP_LVL=33;
 
-    m_pv=m_pvMax=20;
 
     pvBarre.setLLL();
     pvBarre.setPosition(10,10);
@@ -82,15 +78,7 @@ Player::Player():pvBarre(m_pv,m_pvMax),xpBarre(m_xp,m_xpLvlSuivant)
     xpBarre.setPosition(10,30);
     xpBarre.setColor(200,50,50);
 
-    for (int i=0;i<3;i++){
-        m_key[i]=false;
-    }
 
-    for(int i=0;i<10;i++){
-        for(int j=0;j<10;j++){
-            rooms[i][j]=false;
-        }
-    }
 }
 
 void  Player::init(int x,int y)
@@ -103,6 +91,25 @@ void  Player::init(int x,int y)
 
     falling = true;
     orientation=RIGHT;
+
+    for (int i=0;i<3;i++){
+        m_key[i]=false;
+    }
+
+    for(int i=0;i<10;i++){
+        for(int j=0;j<10;j++){
+            rooms[i][j]=false;
+        }
+    }
+
+    m_xp=0;
+    m_lvl=1;
+    m_xpLvlSuivant=XP_LVL=33;
+
+    m_pv=m_pvMax=20;
+
+    status=STAND;
+    spriteNumber=0;
 }
 
 SDL_Rect Player::hitBox()

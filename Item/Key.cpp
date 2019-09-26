@@ -1,6 +1,7 @@
 #include "Key.h"
 
 #include "../Player.h"
+extern Player player;
 extern SDL_Window *ecran;
 #include "../gfx/SDL2_rotozoom.h"
 
@@ -23,9 +24,9 @@ Key::~Key()
     //dtor
 }
 
-void Key::action(Player* player,Scene* parent)
+void Key::action(Scene* parent)
 {
-    player->setKey(true,m_keyNumber);
+    player.setKey(true,m_keyNumber);
 
     std::cout<<"item action"<<std::endl;
 }

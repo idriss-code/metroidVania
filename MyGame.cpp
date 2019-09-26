@@ -85,7 +85,9 @@ MyGame::MyGame():Game(800,600)
     m_level[22] = new Level22;
     m_level[23] = new Level23;
     m_level[24] = new Level24;
-    this->setCurrentScene(m_level[1]);
+
+    //a mettre dans game over
+    this->setCurrentScene(m_level[17]);
     player.init(128,128);
 }
 

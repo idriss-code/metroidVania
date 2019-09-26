@@ -10,7 +10,7 @@ class Key : public Item
         Key(int x,int y,int keyNumber);
         virtual ~Key();
 
-        virtual void action(Player* player,Scene* parent);
+        virtual void action(Scene* parent);
         void draw(int camX,int camY);
 
     protected:

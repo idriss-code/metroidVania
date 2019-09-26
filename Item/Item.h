@@ -6,7 +6,6 @@
 using namespace std;
 
 class MapProto;
-class Player;
 class Scene;
 
 class Item
@@ -22,7 +21,7 @@ class Item
         int posY(){return m_posY;}
         int width(){return m_width;}
         int height(){return m_height;}
-        virtual void action(Player* player,Scene* parent)=0;
+        virtual void action(Scene* parent)=0;
 
         SDL_Rect hitBox()
         {

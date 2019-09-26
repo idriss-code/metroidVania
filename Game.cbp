@@ -95,8 +95,16 @@
 		<Unit filename="Eni/Alien.h" />
 		<Unit filename="Eni/Biped.cpp" />
 		<Unit filename="Eni/Biped.h" />
+		<Unit filename="Eni/BounceEni.cpp" />
+		<Unit filename="Eni/BounceEni.h" />
 		<Unit filename="Eni/Crab.cpp" />
 		<Unit filename="Eni/Crab.h" />
+		<Unit filename="Eni/FlyingEni.cpp" />
+		<Unit filename="Eni/FlyingEni.h" />
+		<Unit filename="Eni/Insect.cpp" />
+		<Unit filename="Eni/Insect.h" />
+		<Unit filename="Eni/Jumper.cpp" />
+		<Unit filename="Eni/Jumper.h" />
 		<Unit filename="Eni/Robot.cpp" />
 		<Unit filename="Eni/Robot.h" />
 		<Unit filename="Eni/WalkingEni.cpp" />

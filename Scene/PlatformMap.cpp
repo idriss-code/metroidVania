@@ -186,7 +186,7 @@ void PlatformMap::update(int dt)
         Item* item = itemIt.next();
 
         if(boxCollision(player.hitBox(),item->hitBox())){
-            item->action(&player,this);
+            item->action(this);
             itemIt.remove();
         }
     }
@@ -212,6 +212,7 @@ void PlatformMap::update(int dt)
                     eni->damage(1);
                     if(eni->pv()<=0){
                         player.gainXp(eni->xp(),this);
+                        //eni->onDying(&player,&item)
                         eniIt.remove();
                     }
                 }

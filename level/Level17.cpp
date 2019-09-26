@@ -6,6 +6,8 @@
 #include "../Eni/Robot.h"
 #include "../Eni/Biped.h"
 #include "../Eni/Alien.h"
+#include "../Eni/Insect.h"
+#include "../Eni/Jumper.h"
 
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
@@ -28,7 +30,8 @@ Level17::~Level17()
 void Level17::initEni()
 {
 
-    enis.add(new Robot(800,280));
+    enis.add(new Insect(800,280));
+    enis.add(new Jumper(700,280));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);

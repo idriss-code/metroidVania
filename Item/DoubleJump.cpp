@@ -1,6 +1,7 @@
 #include "DoubleJump.h"
 
 #include "../Player.h"
+extern Player player;
 extern SDL_Window *ecran;
 #include "../gfx/SDL2_rotozoom.h"
 #include "../core/Scene.h"
@@ -25,9 +26,9 @@ DoubleJump::~DoubleJump()
     //dtor
 }
 
-void DoubleJump::action(Player* player,Scene* parent)
+void DoubleJump::action(Scene* parent)
 {
-    player->setDoubleJump();
+    player.setDoubleJump();
     ScreenMessage::loach("Double Jump",parent,10);
     std::cout<<"double jump"<<std::endl;
 }

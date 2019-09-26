@@ -10,7 +10,7 @@ class DoubleJump : public Item
         DoubleJump(int x,int y);
         virtual ~DoubleJump();
 
-        virtual void action(Player* player,Scene* parent);
+        virtual void action(Scene* parent);
         void draw(int camX,int camY);
 
     protected:
