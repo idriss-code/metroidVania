@@ -1,17 +1,17 @@
-#ifndef Boss1_H
-#define Boss1_H
+#ifndef Boss3_H
+#define Boss3_H
 
-#include"Robot.h"
+#include"Insect2.h"
 
 template <class T> class CustomCollection;
 class Item;
 class Bullet;
 
-class Boss1 : public Robot
+class Boss3 : public Insect2
 {
     public:
-        Boss1(int x,int y);
-        virtual ~Boss1();
+        Boss3(int x,int y);
+        virtual ~Boss3();
         void onDying(CustomCollection<Item>*);
         void fireUpdate(CustomCollection<Bullet>* bullets);
 
@@ -22,4 +22,4 @@ class Boss1 : public Robot
 
 };
 
-#endif // Boss1_H
+#endif // Boss3_H

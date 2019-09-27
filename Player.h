@@ -70,6 +70,7 @@ class Player
 
         int pv(){return m_pv;}
         int pvMax(){return m_pvMax;}
+        void gainPv(int val){m_pv=(m_pv+=val)<=m_pvMax?m_pv:m_pvMax;}
         void damage(int val);
         int power(){return m_power;}
 

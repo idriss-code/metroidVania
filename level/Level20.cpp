@@ -2,7 +2,7 @@
 #include <iostream>
 #include "../Player.h"
 #include "../MyGame.h"
-#include "../Eni/Crab.h"
+#include "../Eni/Boss2.h"
 #include "../Eni/Robot.h"
 #include "../Eni/Biped.h"
 #include "../Eni/Alien.h"
@@ -28,9 +28,9 @@ Level20::~Level20()
 void Level20::initEni()
 {
 
-    enis.add(new Robot(800,280));
+    enis.add(new Boss2(800,280));
 
-    Door* doorR = new Door(1);
+    Door* doorR = new Door(5);
     doorR->remplace(0,this);
     addElement(doorR,11);
 

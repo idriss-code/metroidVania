@@ -1,4 +1,4 @@
-#include "Boss1.h"
+#include "Boss2.h"
 
 #include "../Player.h"
 
@@ -7,22 +7,22 @@
 
 extern Player player;
 
-Boss1::Boss1(int x,int y):Robot(x,y)
+Boss2::Boss2(int x,int y):Insect(x,y)
 {
 
 }
 
-Boss1::~Boss1()
+Boss2::~Boss2()
 {
 
 }
 
-void Boss1::onDying(CustomCollection<Item>*)
+void Boss2::onDying(CustomCollection<Item>*)
 {
-    player.setKey(true,4);
+    player.setKey(true,5);
 }
 
-void Boss1::fireUpdate(CustomCollection<Bullet>* bullets)
+void Boss2::fireUpdate(CustomCollection<Bullet>* bullets)
 {
     if(--fireTime<=0){
         fireTime=fireCooldown;

@@ -27,6 +27,9 @@
 					<Add directory="C:/Program Files (x86)/CodeBlocks/SDL2_mixer-2.0.2/include" />
 					<Add directory="Scene" />
 				</Compiler>
+				<ResourceCompiler>
+					<Add directory="./" />
+				</ResourceCompiler>
 				<Linker>
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2-2.0.8/lib/x86/SDL2.lib" />
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2-2.0.8/lib/x86/SDL2main.lib" />
@@ -34,6 +37,7 @@
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2_ttf-2.0.14/lib/x86/SDL2_ttf.lib" />
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2_image-2.0.1/lib/x86/SDL2_image.lib" />
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2_mixer-2.0.2/lib/x86/SDL2_mixer.lib" />
+					<Add directory="./" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -56,6 +60,9 @@
 					<Add directory="C:/Program Files (x86)/CodeBlocks/SDL2_mixer-2.0.2/include" />
 					<Add directory="Scene" />
 				</Compiler>
+				<ResourceCompiler>
+					<Add directory="./" />
+				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2-2.0.8/lib/x86/SDL2.lib" />
@@ -64,6 +71,7 @@
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2_ttf-2.0.14/lib/x86/SDL2_ttf.lib" />
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2_image-2.0.1/lib/x86/SDL2_image.lib" />
 					<Add library="C:/Program Files (x86)/CodeBlocks/SDL2_mixer-2.0.2/lib/x86/SDL2_mixer.lib" />
+					<Add directory="./" />
 				</Linker>
 			</Target>
 		</Build>
@@ -75,7 +83,7 @@
 			<Add directory="C:/Program Files (x86)/CodeBlocks/SDL2_mixer-2.0.2/include" />
 		</Compiler>
 		<ResourceCompiler>
-			<Add directory="C:/Program Files (x86)/CodeBlocks/SDL2-2.0.5/lib/x86" />
+			<Add directory="./" />
 		</ResourceCompiler>
 		<Linker>
 			<Add library="C:/Program Files (x86)/CodeBlocks/SDL2-2.0.8/lib/x86/SDL2.lib" />
@@ -97,6 +105,10 @@
 		<Unit filename="Eni/Biped.h" />
 		<Unit filename="Eni/Boss1.cpp" />
 		<Unit filename="Eni/Boss1.h" />
+		<Unit filename="Eni/Boss2.cpp" />
+		<Unit filename="Eni/Boss2.h" />
+		<Unit filename="Eni/Boss3.cpp" />
+		<Unit filename="Eni/Boss3.h" />
 		<Unit filename="Eni/BounceEni.cpp" />
 		<Unit filename="Eni/BounceEni.h" />
 		<Unit filename="Eni/Crab.cpp" />
@@ -119,6 +131,8 @@
 		<Unit filename="Item/Item.h" />
 		<Unit filename="Item/Key.cpp" />
 		<Unit filename="Item/Key.h" />
+		<Unit filename="Item/Life.cpp" />
+		<Unit filename="Item/Life.h" />
 		<Unit filename="MapElement/Door.cpp" />
 		<Unit filename="MapElement/Door.h" />
 		<Unit filename="MapElement/MapElement.cpp" />
@@ -162,6 +176,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="gfx/SDL2_rotozoom.h" />
+		<Unit filename="icon.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="level/Level1.cpp" />
 		<Unit filename="level/Level1.h" />
 		<Unit filename="level/Level10.cpp" />
