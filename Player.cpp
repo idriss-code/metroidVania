@@ -106,7 +106,8 @@ void  Player::init(int x,int y)
     m_lvl=1;
     m_xpLvlSuivant=XP_LVL=33;
 
-    m_pv=m_pvMax=20;
+    m_pv=m_pvMax=10;
+    m_power=1;
 
     status=STAND;
     spriteNumber=0;
@@ -327,7 +328,7 @@ void Player::moov()
     m_posY+=velY();
 }
 
-int Player::gainXp(int val,Scene* parent)
+void Player::gainXp(int val,Scene* parent)
 {
     m_xp+=val;
     while(m_xp>=m_xpLvlSuivant){
@@ -335,10 +336,16 @@ int Player::gainXp(int val,Scene* parent)
         m_xp-=m_xpLvlSuivant;
         m_xpLvlSuivant=m_lvl*XP_LVL;
 
-        m_lvl++;
         ScreenMessage::loach("Level UP",parent,10);
+        levelUp(++m_lvl);
+
     }
-    return m_xp;
+}
+
+void Player::levelUp(int lvl)
+{
+    m_power=lvl/2+1;
+    m_pv=m_pvMax=lvl*2+10;
 }
 
 void Player::damage(int val)

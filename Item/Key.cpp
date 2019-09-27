@@ -27,8 +27,6 @@ Key::~Key()
 void Key::action(Scene* parent)
 {
     player.setKey(true,m_keyNumber);
-
-    std::cout<<"item action"<<std::endl;
 }
 
 void Key::draw(int camX,int camY)

@@ -123,7 +123,9 @@ void Eni::fireUpdate(CustomCollection<Bullet>* bullets)
         float angle=atan2(player.posY()-posY(),player.posX()-posX());
         bullets->add(new Bullet(this->posX(),this->posY(),angle,Bullet::ENI,10));
         changeOrientation();
-        cout<<"fire"<<endl;
+        #ifdef DEBUG
+            cout<<"fire"<<endl;
+        #endif
     }
 }
 

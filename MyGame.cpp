@@ -89,6 +89,10 @@ MyGame::MyGame():Game(800,600)
     m_level[24] = new Level24;
 
     this->setCurrentScene(intro);
+    /*
+    this->setCurrentScene(level(17));
+    player.init(128,128);
+    */
 }
 
 MyGame::~MyGame()

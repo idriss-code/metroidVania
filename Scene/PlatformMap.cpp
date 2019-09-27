@@ -55,8 +55,6 @@ void PlatformMap::load()
 
 #ifdef DEBUG
     std::cout<<"load debug"<<std::endl;
-#else
-    std::cout<<"load release"<<std::endl;
 #endif
 
 }
@@ -211,7 +209,7 @@ void PlatformMap::update(int dt)
                 Eni* eni = eniIt.next();
                 if(pointCollision(bullet->GetposX(),bullet->GetposY(),eni->hitBox())){
                     bulletIt.remove();
-                    eni->damage(1);
+                    eni->damage(player.power());
                     if(eni->pv()<=0){
                         player.gainXp(eni->xp(),this);
                         eni->onDying(&items);

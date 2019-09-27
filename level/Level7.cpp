@@ -2,10 +2,9 @@
 #include <iostream>
 #include "../Player.h"
 #include "../MyGame.h"
-#include "../Eni/Crab.h"
-#include "../Eni/Robot.h"
-#include "../Eni/Biped.h"
-#include "../Eni/Alien.h"
+
+#include "../Eni/Boss1.h"
+
 
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
@@ -28,9 +27,9 @@ Level7::~Level7()
 void Level7::initEni()
 {
 
-    enis.add(new Biped(800,280));
+    if(!player.key(4))enis.add(new Boss1(800,280));
 
-    Door* doorR = new Door(1);
+    Door* doorR = new Door(4);
     doorR->remplace(0,this);
     addElement(doorR,11);
 

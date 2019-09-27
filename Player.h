@@ -65,12 +65,13 @@ class Player
 
         int xp(){return m_xp;}
         int xpMax(){return m_xpLvlSuivant;}
-        int gainXp(int val,Scene* parent);
+        void gainXp(int val,Scene* parent);
         int lvl(){return m_lvl;}
 
         int pv(){return m_pv;}
         int pvMax(){return m_pvMax;}
         void damage(int val);
+        int power(){return m_power;}
 
         bool key(int keyNumber){return m_key[keyNumber];}
         void setKey(bool val,int keyNumber){m_key[keyNumber]=val;}
@@ -105,12 +106,13 @@ class Player
 
         int m_pv;
         int m_pvMax;
+        int m_power;
 
         Barre pvBarre;
         Barre xpBarre;
 
         //inventaire des key getter et adder
-        bool m_key[4];
+        bool m_key[10];
         bool m_doubleJump;
 
         //doit correspondre à Big Map
@@ -153,6 +155,8 @@ class Player
 
         SDL_Surface* hurtSprite;
         SDL_Surface* hurtSpriteI;
+
+        void levelUp(int lvl);
 
 };
 

@@ -30,7 +30,6 @@ void DoubleJump::action(Scene* parent)
 {
     player.setDoubleJump();
     ScreenMessage::loach("Double Jump",parent,10);
-    std::cout<<"double jump"<<std::endl;
 }
 
 void DoubleJump::draw(int camX,int camY)

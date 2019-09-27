@@ -9,8 +9,6 @@ Item::Item(int x,int y)//
 
     m_posX=x ;
     m_posY=y ;
-
-    std::cout<<"creat item"<<std::endl;
 }
 
 Item::~Item()
