@@ -137,6 +137,10 @@
 		<Unit filename="Room.h" />
 		<Unit filename="Scene/BigMap.cpp" />
 		<Unit filename="Scene/BigMap.h" />
+		<Unit filename="Scene/Intro.cpp" />
+		<Unit filename="Scene/Intro.h" />
+		<Unit filename="Scene/MenuIntro.cpp" />
+		<Unit filename="Scene/MenuIntro.h" />
 		<Unit filename="Scene/MenuScene.cpp" />
 		<Unit filename="Scene/MenuScene.h" />
 		<Unit filename="Scene/PlatformMap.cpp" />

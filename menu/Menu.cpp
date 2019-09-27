@@ -10,6 +10,8 @@ extern SDL_Color ROSE;
 Menu::Menu():m_x(0),m_y(0),m_longueur(150),m_hauteurLigne(10),m_menuParent(this)
 {
     //ctor
+    activeColor=ROUGE;
+    noActiveColor=GRIS;
 }
 
 Menu::Menu(Menu* parent):
@@ -17,12 +19,18 @@ Menu::Menu(Menu* parent):
 {
     setPosition(parent->position().x,parent->position().y);
 
+    activeColor=ROUGE;
+    noActiveColor=GRIS;
+
     //ctor
 }
 
 Menu::Menu(int x,int y,TTF_Font *police,int hauteurLigne,int longueur):
     m_x(x),m_y(y),m_longueur(longueur),m_hauteurLigne(hauteurLigne),m_menuParent(this),m_police(police)
 {
+
+    activeColor=ROUGE;
+    noActiveColor=GRIS;
     //ctor
 }
 
@@ -41,9 +49,9 @@ void Menu::affiche(SDL_Window *ecran)
     SDL_Rect pos=position();
     for(it=vec.begin();it!=vec.end();it++){
             if(it==m_actif){
-                afficheTexte(pos,(*it)->name(),ecran,m_police,ROSE);
+                afficheTexte(pos,(*it)->name(),ecran,m_police,activeColor);
             }else{
-                afficheTexte(pos,(*it)->name(),ecran,m_police,GRIS);
+                afficheTexte(pos,(*it)->name(),ecran,m_police,noActiveColor);
             }
             pos.y+=m_hauteurLigne;
         }

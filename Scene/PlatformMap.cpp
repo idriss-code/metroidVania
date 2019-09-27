@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../core/Game.h"
+#include "../MyGame.h"
 extern Game* game;
 #include "../Player.h"
 extern Player player;
@@ -18,6 +18,8 @@ extern Player player;
 #include "../MapElement/MapElement.h"
 
 #include "BigMap.h"
+
+#include "ScreenMessage.h"
 
 
 PlatformMap::PlatformMap(const char* file,const char* TileSet) : MapProto(file,TileSet)
@@ -212,7 +214,7 @@ void PlatformMap::update(int dt)
                     eni->damage(1);
                     if(eni->pv()<=0){
                         player.gainXp(eni->xp(),this);
-                        //eni->onDying(&player,&item)
+                        eni->onDying(&items);
                         eniIt.remove();
                     }
                 }
@@ -225,6 +227,8 @@ void PlatformMap::update(int dt)
         //if collision action item et remove item
 
     if(player.pv()<=0){
+        dynamic_cast<MyGame *>(game)->reBoot();
+        ScreenMessage::loach("Game Over",this,50);
         cout<<"game over"<<endl;
     }
 

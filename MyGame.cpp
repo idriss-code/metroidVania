@@ -32,7 +32,7 @@
 #include "level/Level23.h"
 #include "level/Level24.h"
 
-#include "Scene/TestScene.h"
+#include "Scene/Intro.h"
 
 using namespace std;
 
@@ -61,6 +61,8 @@ MyGame::MyGame():Game(800,600)
 
 
 //*********************************** CHARGEMENT SCENE **********************************
+    intro = new Intro();
+
     m_level[1] = new Level1;
     m_level[2] = new Level2;
     m_level[3] = new Level3;
@@ -86,9 +88,7 @@ MyGame::MyGame():Game(800,600)
     m_level[23] = new Level23;
     m_level[24] = new Level24;
 
-    //a mettre dans game over
-    this->setCurrentScene(m_level[17]);
-    player.init(128,128);
+    this->setCurrentScene(intro);
 }
 
 MyGame::~MyGame()
@@ -106,4 +106,15 @@ MapProto* MyGame::level(int val)
 {
 
     return m_level[val];
+}
+
+void MyGame::begining()
+{
+    player.init(128,128);
+    this->goScene(level(1));
+}
+
+void MyGame::reBoot()
+{
+    this->goScene(intro);
 }

@@ -61,6 +61,8 @@ class Menu
 
         static int updateMenu(int val=0);
 
+        void changeActiveColor(SDL_Color color){activeColor=color;}
+
     protected:
 
     //private:
@@ -82,6 +84,9 @@ class Menu
         //permet l activation au clavier
         static bool m_active;
         static Menu* m_menuActif;
+
+        SDL_Color activeColor;
+        SDL_Color noActiveColor;
 
 };
 

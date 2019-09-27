@@ -14,6 +14,7 @@ extern Game* game;
 extern SDL_Window *ecran;//  main.cpp
 extern TTF_Font * menuFont;
 
+extern SDL_Color ROSE;
 
 MenuScene::MenuScene(Scene* parent): Scene(parent)
 {
@@ -28,6 +29,7 @@ MenuScene::~MenuScene()
 void MenuScene::load()
 {
     mPrincipal= new Menu(100,50,menuFont,50);
+    mPrincipal->changeActiveColor(ROSE);
     mPrincipal->addElement(new Continue("Continue"));
     mPrincipal->addElement(new FullScreen("Full Screen"));
     mPrincipal->addElement(new Quit("Quit"));
