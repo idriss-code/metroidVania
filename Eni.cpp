@@ -27,7 +27,8 @@ Eni::Eni(int x,int y)
 
 Eni::~Eni()
 {
-//free surface
+    SDL_FreeSurface(m_sprite);
+    SDL_FreeSurface(m_spriteI);
 }
 
 void Eni::update(MapProto* mapProto)
@@ -125,6 +126,9 @@ void Eni::fireUpdate(CustomCollection<Bullet>* bullets)
         float angle=atan2(player.posY()-posY(),player.posX()-posX());
         bullets->add(new Bullet(this->posX(),this->posY(),angle,Bullet::ENI,10));
         changeOrientation();
+
+        Mix_PlayChannel(-1, fireSound, 0);
+
         #ifdef DEBUG
             cout<<"fire"<<endl;
         #endif
@@ -147,3 +151,23 @@ void Eni::onDying(CustomCollection<Item>* items)
         items->add(new Life(posX(),posY()));
     }
 }
+
+void Eni::loadSound()
+{
+    //**************** sfx ****************
+    fireSound=Mix_LoadWAV("data/son/LASER.WAV");
+    if(!fireSound) {
+        std::cerr<<"Mix_LoadWAV: "<< Mix_GetError()<<std::endl;
+    }
+    //**************** sfx *****************
+}
+
+void Eni::unloadSound()
+{
+    //**************** sfx ****************
+    Mix_FreeChunk(fireSound);
+    fireSound=NULL;
+    //**************** sfx ****************
+}
+
+Mix_Chunk * Eni::fireSound=NULL;

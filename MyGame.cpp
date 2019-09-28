@@ -35,6 +35,7 @@
 #include "Scene/Intro.h"
 
 #include "MusicManager.h"
+#include "Eni.h"
 
 using namespace std;
 
@@ -97,6 +98,8 @@ MyGame::MyGame():Game("Mission intersideral",800,600)
 
     m_musicManager= new MusicManager;
 
+    Eni::loadSound();
+
 }
 
 MyGame::~MyGame()
@@ -109,6 +112,8 @@ MyGame::~MyGame()
     TTF_CloseFont(numberFont);
 
     delete m_musicManager;
+
+    Eni::unloadSound();
 
 }
 

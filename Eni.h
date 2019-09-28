@@ -4,8 +4,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
-
-#include <vector>
 using namespace std;
 
 class MapProto;
@@ -51,6 +49,9 @@ class Eni
         int velX(){return m_velX;}
         int velY(){return m_velY;}
 
+        static void loadSound();
+        static void unloadSound();
+
     protected:
 
         int m_posX;
@@ -77,6 +78,8 @@ class Eni
 
         int fireCooldown;
         int fireTime;
+
+        static Mix_Chunk *fireSound;
 
     private:
 

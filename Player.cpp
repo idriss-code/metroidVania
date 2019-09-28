@@ -67,9 +67,6 @@ Player::Player():pvBarre(m_pv,m_pvMax),xpBarre(m_xp,m_xpLvlSuivant)
     hurtSpriteI=rotozoomSurfaceXY(sprite,0,-2,2,0);
     SDL_FreeSurface(sprite);
 
-
-
-
     pvBarre.setLLL();
     pvBarre.setPosition(10,10);
     pvBarre.setColor(50,255,50);
@@ -77,8 +74,6 @@ Player::Player():pvBarre(m_pv,m_pvMax),xpBarre(m_xp,m_xpLvlSuivant)
     xpBarre.setLLL();
     xpBarre.setPosition(10,30);
     xpBarre.setColor(200,50,50);
-
-
 }
 
 void  Player::init(int x,int y)
@@ -111,6 +106,18 @@ void  Player::init(int x,int y)
 
     status=STAND;
     spriteNumber=0;
+
+    //**************** sfx ****************
+    Mix_FreeChunk(fireSound);
+    fireSound=NULL;
+    //**************** sfx ****************
+
+    //**************** sfx ****************
+    fireSound=Mix_LoadWAV("data/son/LASER.WAV");
+    if(!fireSound) {
+        std::cerr<<"Mix_LoadWAV: "<< Mix_GetError()<<std::endl;
+    }
+    //**************** sfx *****************
 }
 
 SDL_Rect Player::hitBox()
@@ -145,6 +152,11 @@ Player::~Player()
     SDL_FreeSurface(idleSpriteI);
     SDL_FreeSurface(hurtSprite);
     SDL_FreeSurface(hurtSpriteI);
+
+    //**************** sfx ****************
+    Mix_FreeChunk(fireSound);
+    fireSound=NULL;
+    //**************** sfx ****************
 }
 
 void Player::fire(CustomCollection<Bullet>* bullets)
@@ -160,6 +172,8 @@ void Player::fire(CustomCollection<Bullet>* bullets)
 
     firing=true;
     if(status==STAND)spriteNumber=0;
+
+    Mix_PlayChannel(-1, fireSound, 0);
 }
 
 

@@ -159,6 +159,8 @@ class Player
 
         void levelUp(int lvl);
 
+        Mix_Chunk *fireSound;
+
 };
 
 #endif // PLAYER_H

@@ -1,8 +1,8 @@
 #include "Intro.h"
-#include "../core/Game.h"
+#include "../MyGame.h"
 #include "MenuIntro.h"
+#include "../MusicManager.h"
 
-#include <iostream>
 #include "../util/fonctionTTF.h"
 extern Game* game;
 
@@ -23,12 +23,14 @@ Intro::~Intro()
 
 void Intro::load()
 {
-    std::cerr<<"load"<<std::endl;
+    MusicManager* musicManager;
+    musicManager=dynamic_cast<MyGame *>(game)->musicManager();
+    musicManager->goZone(0);
 }
 
 void Intro::unload()
 {
-    std::cerr<<"unload"<<std::endl;
+
 }
 
 void Intro::input()
