@@ -73,6 +73,7 @@ void BigMap::load()
     loadCorridor(13,11,16);
     loadCorridor(8,3,19);
     loadCorridor(14,3,21);
+    loadCorridor(8,8,24);
 
     loadBoss(10,5,7);
     loadBoss(10,10,17);

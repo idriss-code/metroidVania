@@ -2,9 +2,6 @@
 #define SCENE_H
 
 #include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <SDL_mixer.h>
 
 extern SDL_Window *ecran;//  main.cpp
 class Game;

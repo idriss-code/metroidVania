@@ -1,5 +1,5 @@
 #include "MapProto.h"
-
+#include <SDL_image.h>
 #include "../util/collision.h"
 #include "../gfx/SDL2_rotozoom.h"
 

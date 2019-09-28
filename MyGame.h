@@ -6,6 +6,7 @@
 class Intro;
 class MapProto;
 class TestScene;
+class MusicManager;
 
 class MyGame : public Game
 {
@@ -19,10 +20,13 @@ class MyGame : public Game
         void begining();
         void reBoot();
 
+        MusicManager* musicManager(){return m_musicManager;}
+
     protected:
 
     private:
         MapProto* m_level[100];
+        MusicManager* m_musicManager;
 
 
 

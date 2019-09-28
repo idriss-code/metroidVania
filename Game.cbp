@@ -26,6 +26,7 @@
 					<Add directory="MapElement/" />
 					<Add directory="C:/Program Files (x86)/CodeBlocks/SDL2_mixer-2.0.2/include" />
 					<Add directory="Scene" />
+					<Add directory="../metroid" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="./" />
@@ -59,6 +60,7 @@
 					<Add directory="MapElement/" />
 					<Add directory="C:/Program Files (x86)/CodeBlocks/SDL2_mixer-2.0.2/include" />
 					<Add directory="Scene" />
+					<Add directory="../metroid" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="./" />
@@ -147,6 +149,8 @@
 		<Unit filename="Map/MapProto.cpp" />
 		<Unit filename="Map/MapProto.h" />
 		<Unit filename="Map/Maploader.h" />
+		<Unit filename="MusicManager.cpp" />
+		<Unit filename="MusicManager.h" />
 		<Unit filename="MyGame.cpp" />
 		<Unit filename="MyGame.h" />
 		<Unit filename="Player.cpp" />

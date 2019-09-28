@@ -34,6 +34,8 @@
 
 #include "Scene/Intro.h"
 
+#include "MusicManager.h"
+
 using namespace std;
 
 //  variables globales
@@ -88,10 +90,12 @@ MyGame::MyGame():Game("Mission intersideral",800,600)
     m_level[23] = new Level23;
     m_level[24] = new Level24;
 
-    //this->setCurrentScene(intro);
+    this->setCurrentScene(intro);
 
-    this->setCurrentScene(level(17));
-    player.init(128,128);
+    //this->setCurrentScene(level(17));
+    //player.init(128,128);
+
+    m_musicManager= new MusicManager;
 
 }
 
@@ -103,6 +107,8 @@ MyGame::~MyGame()
     TTF_CloseFont(texteFont);
     TTF_CloseFont(menuFont);
     TTF_CloseFont(numberFont);
+
+    delete m_musicManager;
 
 }
 

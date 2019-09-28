@@ -28,7 +28,7 @@ Level20::~Level20()
 void Level20::initEni()
 {
 
-    if(!player.key(4))enis.add(new Boss2(800,280));
+    if(!player.key(5))enis.add(new Boss2(800,280));
 
     Door* doorR = new Door(5);
     doorR->remplace(0,this);
