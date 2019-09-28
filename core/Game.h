@@ -6,7 +6,7 @@
 class Game
 {
     public:
-        Game(int screenW = 800,int screenH = 600);
+        Game(const char* name = "game",int screenW = 800,int screenH = 600);
         void initSDL();// dans constructeur
         virtual ~Game();
 

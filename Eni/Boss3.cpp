@@ -1,11 +1,12 @@
 #include "Boss3.h"
 
 #include "../Player.h"
-
+#include "../Scene/ScreenMessage.h"
 #include "../CustomCollection.h"
 #include "../Bullet.h"
-
+#include "../MyGame.h"
 extern Player player;
+extern Game* game;
 
 Boss3::Boss3(int x,int y):Insect2(x,y)
 {
@@ -22,6 +23,9 @@ void Boss3::onDying(CustomCollection<Item>*)
     #ifdef DEBUG
         cout<<"the end"<<endl;
     #endif
+
+    ScreenMessage::loach("congratulation",game->currentScene(),20);
+    dynamic_cast<MyGame *>(game)->reBoot();
 }
 
 void Boss3::fireUpdate(CustomCollection<Bullet>* bullets)

@@ -23,8 +23,6 @@ Intro::~Intro()
 
 void Intro::load()
 {
-    menu=false;
-    message=false;
     std::cerr<<"load"<<std::endl;
 }
 
@@ -45,11 +43,9 @@ void Intro::input()
                 {
                     case SDLK_ESCAPE:
                         event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        menu=true;
                         break;
                     case SDLK_SPACE:
                         event.key.keysym.sym=0;//evite les pb de repetition de touche
-                        message=true;
                         break;
                 }
         }

@@ -320,112 +320,22 @@ void PlatformMap::drawBackground()
     }
 
      if(levelHeight<game->screenH()){//centrage si niveau plus petit que ecran
-            src.y=pos.y=(game->screenH()-levelHeight)/2;
-    }
-    src.y+=20;
-
-    SDL_BlitSurface(bkgrnd,&src,SDL_GetWindowSurface(ecran),&pos);
-
-
-}
-
-#define SGN(X) (((X)==0)?(0):(((X)<0)?(-1):(1)))
-#define ABS(X) ((((X)<0)?(-(X)):(X)))
-
-void PlatformMap::playerMoov(int velX,int velY,SDL_Rect hitBox)
-{
-    // division du mouvement trop rapide
-    if(velX >= this->tileWidth() || velY >= this->tileHeight() ){
-        playerMoov(velX/2,velY/2,hitBox);
-        playerMoov(velX-velX/2,velY-velY/2,hitBox);
-        return;
-    }
-
-    // gestion des platform
-    if(velY>0){
-        SDL_Rect hitBoxTest=player.hitBox();
-        SDL_Rect hitBoxTile;
-        hitBoxTest.x+=velX;
-        hitBoxTest.y+=velY;
-        hitBoxTile.w=tileWidth();
-        hitBoxTile.h=tileHeight();
-
-        int test=true;
-        for(int i=0;i<width() && test;i++){
-            for(int j=0;j<height() && test;j++){
-                if(obj(i,j) == 2){
-                    hitBoxTile.x=i*tileWidth();
-                    hitBoxTile.y=j*tileHeight();
-                    if(boxCollision(hitBoxTest,hitBoxTile)){
-                        if(player.hitBox().y+player.hitBox().h<=hitBoxTile.y){
-                            player.setPosition(player.posX(),hitBoxTile.y-(player.hitBox().h/2+player.hitBox().h%2));
-                            velY=0;
-                            player.stopFalling();
-                            std::cerr<<"stop fall"<<std::endl;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-
-    //mouvement sans mur
-    if(testMoov(velX,velY,player.hitBox())){
-        player.moov(velX,velY);
-        return;
-    }
-
-    //affinage avec mur
-    for(int i=0;i<ABS(velX);i++)
-    {
-        if (testMoov(SGN(velX),0,player.hitBox())) {
-            player.moov(SGN(velX),0);
-            hitBox.x+=SGN(velX);
-        }else{
-            break;
-        }
-    }
-    for(int i=0;i<ABS(velY);i++)
-    {
-        if (testMoov(0,SGN(velY),player.hitBox())){
-            player.moov(0,SGN(velY));
-            hitBox.y+=SGN(velY);
-        }else{
-            break;
-        }
-    }
-}
-
-void PlatformMap::playerFallControle()
-{
-    SDL_Rect hitBoxTest=player.hitBox();
-    hitBoxTest.y+=hitBoxTest.h;
-    hitBoxTest.h=1;
-    if(collisionWall(hitBoxTest)){
-        if (player.velY()>0)player.stopFalling(),player.resetJump();
-        return;
-    }else if(collisionTile(hitBoxTest,2)){
-        player.resetJump();
-        return;
-    }else{
-        player.startFalling();
-        // touché de téte au plafond
-        hitBoxTest.y=player.hitBox().y-1;
-        if(collisionWall(hitBoxTest)){
-            player.stopVelY();
-        }
-
-    }
-}
-
-void PlatformMap::TestActionTile()
-{
-    for(int i=0;i<100;i++)//100 objet max dans une carte
-    {
-        if(this->element(i)->doActionOnEnter() && collisionTile(player.hitBox(),i))
-           {
-               this->element(i)->action();
-           }
-    }
-}
+            src.y=pos.y=P
+9`UvX$"çï‚QuŒ1êÔzÄÔ[ÚLÊ¡²xN‡¹½.,6³ßİMıK)6ÚrNUW*êœYˆ‰qÆĞ÷ïOI¨éwŞêÀ´Å1ßÜu6˜şS{ÇiÖ­Ye<²fü\[Ñë8lé+{vyâ5/”|Š¬p’DîYQ_Æñ1áXÓ¬VÁ2üIş«kşéçĞyôgÊéÙŒ$œŸ¦3§xqh‚9³d*ª‘ÓÚ´Ús%.22H/µº„»¸éºÆ7¥Ç*1ËtÓ ü•67ÇæBm†$NÅ¤“¾ÛÊl$3¦
+!á•™rßèB3îx—QÑ9JƒX/Ùğ,uT¹–¢S9Ktø=®™‹ŸÑ·µ¤­://‹>p^7»î«¦#Œ”çĞmŞõ‚N7vövÃ~ÌŒ€)ÑˆZ+-4e)|Y,`ñÃ
+d®²ªú[#BİiÉï£—{›ÌJ£8B.õào_*/â“ã-Ø»úe§è§R;‚2?Ÿ=ifÖ®ÑàœÃ¯.·lrqºØ$Pì 3U#ÿœµìÆ§sı“•úDaæ°š@cYëÃ	H\õƒ%Lwn‘(c%ã*ÂW;ô/¡t…^<7¼eú&@ìCÔ3Ä2bQÚµ±@¯*MÃû¿Ì¹ˆ&#ÄÿzŒ¿Æ^TP
+9`UvX$"çï‚QuŒ1êÔzÄÔ[ÚLÊ¡²xN‡¹½.,6³ßİMıK)6ÚrNUW*êœYˆ‰qÆĞ÷ïOI¨éwŞêÀ´Å1ßÜu6˜şS{ÇiÖ­Ye<²fü\[Ñë8lé+{vyâ5/”|Š¬p’DîYQ_Æñ1áXÓ¬VÁ2üIş«kşéçĞyôgÊéÙŒ$œŸ¦3§xqh‚9³d*ª‘ÓÚ´Ús%.22H/µº„»¸éºÆ7¥Ç*1ËtÓ ü•67ÇæBm†$NÅ¤“¾ÛÊl$3¦
+!á•™rßèB3îx—QÑ9JƒX/Ùğ,uT¹–¢S9Ktø=®™‹ŸÑ·µ¤­://‹>p^7»î«¦#Œ”çĞmŞõ‚N7vövÃ~ÌŒ€)ÑˆZ+-4e)|Y,`ñÃ
+d®²ªú[#BİiÉï£—{›ÌJ£8B.õào_*/â“ã-Ø»úe§è§R;‚2?Ÿ=ifÖ®ÑàœÃ¯.·lrqºØ$Pì 3U#ÿœµìÆ§sı“•úDaæ°š@cYëÃ	H\õƒ%Lwn‘(c%ã*ÂW;ô/¡t…^<7¼eú&@ìCÔ3Ä2bQÚµ±@¯*MÃû¿Ì¹ˆ&#ÄÿzŒ¿Æ^TP
+9`UvX$"çï‚QuŒ1êÔzÄÔ[ÚLÊ¡²xN‡¹½.,6³ßİMıK)6ÚrNUW*êœYˆ‰qÆĞ÷ïOI¨éwŞêÀ´Å1ßÜu6˜şS{ÇiÖ­Ye<²fü\[Ñë8lé+{vyâ5/”|Š¬p’DîYQ_Æñ1áXÓ¬VÁ2üIş«kşéçĞyôgÊéÙŒ$œŸ¦3§xqh‚9³d*ª‘ÓÚ´Ús%.22H/µº„»¸éºÆ7¥Ç*1ËtÓ ü•67ÇæBm†$NÅ¤“¾ÛÊl$3¦
+!á•™rßèB3îx—QÑ9JƒX/Ùğ,uT¹–¢S9Ktø=®™‹ŸÑ·µ¤­://‹>p^7»î«¦#Œ”çĞmŞõ‚N7vövÃ~ÌŒ€)ÑˆZ+-4e)|Y,`ñÃ
+d®²ªú[#BİiÉï£—{›ÌJ£8B.õào_*/â“ã-Ø»úe§è§R;‚2?Ÿ=ifÖ®ÑàœÃ¯.·lrqºØ$Pì 3U#ÿœµìÆ§sı“•úDaæ°š@cYëÃ	H\õƒ%Lwn‘(c%ã*ÂW;ô/¡t…^<7¼eú&@ìCÔ3Ä2bQÚµ±@¯*MÃû¿Ì¹ˆ&#ÄÿzŒ¿Æ^TP
+9`UvX$"çï‚QuŒ1êÔzÄÔ[ÚLÊ¡²xN‡¹½.,6³ßİMıK)6ÚrNUW*êœYˆ‰qÆĞ÷ïOI¨éwŞêÀ´Å1ßÜu6˜şS{ÇiÖ­Ye<²fü\[Ñë8lé+{vyâ5/”|Š¬p’DîYQ_Æñ1áXÓ¬VÁ2üIş«kşéçĞyôgÊéÙŒ$œŸ¦3§xqh‚9³d*ª‘ÓÚ´Ús%.22H/µº„»¸éºÆ7¥Ç*1ËtÓ ü•67ÇæBm†$NÅ¤“¾ÛÊl$3¦
+!á•™rßèB3îx—QÑ9JƒX/Ùğ,uT¹–¢S9Ktø=®™‹ŸÑ·µ¤­://‹>p^7»î«¦#Œ”çĞmŞõ‚N7vövÃ~ÌŒ€)ÑˆZ+-4e)|Y,`ñÃ
+d®²ªú[#BİiÉï£—{›ÌJ£8B.õào_*/â“ã-Ø»úe§è§R;‚2?Ÿ=ifÖ®ÑàœÃ¯.·lrqºØ$Pì 3U#ÿœµìÆ§sı“•úDaæ°š@cYëÃ	H\õƒ%Lwn‘(c%ã*ÂW;ô/¡t…^<7¼eú&@ìCÔ3Ä2bQÚµ±@¯*MÃû¿Ì¹ˆ&#ÄÿzŒ¿Æ^TP
+9`UvX$"çï‚QuŒ1êÔzÄÔ[ÚLÊ¡²xN‡¹½.,6³ßİMıK)6ÚrNUW*êœYˆ‰qÆĞ÷ïOI¨éwŞêÀ´Å1ßÜu6˜şS{ÇiÖ­Ye<²fü\[Ñë8lé+{vyâ5/”|Š¬p’DîYQ_Æñ1áXÓ¬VÁ2üIş«kşéçĞyôgÊéÙŒ$œŸ¦3§xqh‚9³d*ª‘ÓÚ´Ús%.22H/µº„»¸éºÆ7¥Ç*1ËtÓ ü•67ÇæBm†$NÅ¤“¾ÛÊl$3¦
+!á•™rßèB3îx—QÑ9JƒX/Ùğ,uT¹–¢S9Ktø=®™‹ŸÑ·µ¤­://‹>p^7»î«¦#Œ”çĞmŞõ‚N7vövÃ~ÌŒ€)ÑˆZ+-4e)|Y,`ñÃ
+d®²ªú[#BİiÉï£—{›ÌJ£8B.õào_*/â“ã-Ø»úe§è§R;‚2?Ÿ=ifÖ®ÑàœÃ¯.·lrqºØ$Pì 3U#ÿœµìÆ§sı“•úDaæ°š@cYëÃ	H\õƒ%Lwn‘(c%ã*ÂW;ô/¡t…^<7¼eú&@ìCÔ3Ä2bQÚµ±@¯*MÃû¿Ì¹ˆ&#ÄÿzŒ¿Æ^TP
+9`UvX$"çï‚QuŒ1êÔzÄÔ[ÚLÊ¡²xN‡¹½.,6³ßİMıK)6ÚrNUW*êœYˆ‰qÆĞ÷ïOI¨éwŞêÀ´Å1ßÜu6˜şS{ÇiÖ­Ye<²fü\[Ñë8lé+{vyâ5/”|Š¬p’DîYQ_Æñ1áXÓ¬VÁ2üIş«kşéçĞyôgÊéÙŒ$œŸ¦3§xqh‚9³d*ª‘ÓÚ´Ús%.22H/µº„»¸éºÆ7¥Ç*1ËtÓ ü•67ÇæBm†$NÅ¤“¾ÛÊl$3¦
+!á•™rßèB3îx—QÑ9JƒX/Ùğ,uT¹–¢S9Ktø=®™‹ŸÑ·µ¤­://‹>p^7»î«¦#Œ”çĞmŞõ‚N7vövÃ~ÌŒ€)ÑˆZ+-4e)|Y,`ñÃ
+d®²ªú[#BİiÉï£—{›ÌJ£8B.õào_*/â“ã-Ø»úe§è§R;‚2?Ÿ=ifÖ®ÑàœÃ¯.·lrqºØ$Pì 3U#ÿœµìÆ§sı“•úDaæ°š@cYë

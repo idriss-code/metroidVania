@@ -5,6 +5,8 @@ extern SDL_Window *ecran;
 
 #include "CustomCollection.h"
 #include "Bullet.h"
+#include "util/benrandom.h"
+#include "Item/Life.h"
 
 #include "Player.h"
 extern Player player;
@@ -136,5 +138,12 @@ void Eni::changeOrientation()
         m_velX=ABS(m_velX);
     }else{
         m_velX=-ABS(m_velX);
+    }
+}
+
+void Eni::onDying(CustomCollection<Item>* items)
+{
+    if(de()==1){
+        items->add(new Life(posX(),posY()));
     }
 }

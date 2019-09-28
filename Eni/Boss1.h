@@ -15,7 +15,6 @@ class Boss1 : public Robot
         void onDying(CustomCollection<Item>*);
         void fireUpdate(CustomCollection<Bullet>* bullets);
 
-
     protected:
 
     private:

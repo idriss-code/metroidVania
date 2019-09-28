@@ -1,5 +1,5 @@
-#ifndef Intro_H
-#define Intro_H
+#ifndef INTRO_H
+#define INTRO_H
 
 #include "../core/Scene.h"
 
@@ -16,8 +16,6 @@ class Intro : public Scene
         virtual void update(int dt);
         virtual void draw();
     private:
-        bool menu;
-        bool message;
 };
 
-#endif // Intro_H
+#endif // INTRO_H

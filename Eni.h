@@ -22,7 +22,7 @@ class Eni
         virtual void draw(int camX,int camY);
         virtual void update(MapProto* mapProto);
         virtual void fireUpdate(CustomCollection<Bullet>*);
-        virtual void onDying(CustomCollection<Item>*){}
+        virtual void onDying(CustomCollection<Item>*);
         virtual void changeOrientation();
         void moov();
 

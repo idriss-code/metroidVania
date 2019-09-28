@@ -11,8 +11,6 @@ class Insect : public FlyingEni
         Insect(int x,int y);
         virtual ~Insect();
 
-        virtual void onDying(CustomCollection<Item>*){ std::cout<<"test"<<std::endl;}
-
     protected:
 
     private:
