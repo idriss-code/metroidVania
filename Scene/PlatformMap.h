@@ -9,6 +9,7 @@ using namespace std;
 class Eni;
 class Bullet;
 class Item;
+class Explosion;
 
 class PlatformMap : public MapProto
 {
@@ -32,7 +33,7 @@ class PlatformMap : public MapProto
         CustomCollection<Eni> enis;
         CustomCollection<Bullet> bullets;
         CustomCollection<Item> items;
-
+        CustomCollection<Explosion> explosions;
 
     private:
         PlatformMap();

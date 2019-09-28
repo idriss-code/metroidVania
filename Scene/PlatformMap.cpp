@@ -1,26 +1,21 @@
 #include "PlatformMap.h"
-
 #include <iostream>
-
 #include "../MyGame.h"
 extern Game* game;
 #include "../Player.h"
 extern Player player;
 #include "MenuScene.h"
-
 #include "../util/collision.h"
 #include "../util/benrandom.h"
 #include "../gfx/SDL2_rotozoom.h"
-
 #include "../Eni.h"
 #include "../Bullet.h"
 #include "../Item/Item.h"
 #include "../MapElement/MapElement.h"
-
 #include "BigMap.h"
 #include "ScreenMessage.h"
-
 #include "../MusicManager.h"
+#include "../Explosion.h"
 
 PlatformMap::PlatformMap(const char* file,const char* TileSet) : MapProto(file,TileSet)
 {
@@ -184,6 +179,16 @@ void PlatformMap::update(int dt)
     playerFallControle();
     TestActionTile();// test action genre porte etc..
 
+
+    CustomIterator<Explosion> explIt = explosions.newIterator();
+    while(explIt.hasNext()){
+        Explosion* explosion = explIt.next();
+        explosion->update();
+        if(explosion->toDelete()){
+            explIt.remove();
+        }
+    }
+
     CustomIterator<Eni> eniIt = enis.newIterator();
     while(eniIt.hasNext()){
         Eni* eni = eniIt.next();
@@ -213,6 +218,7 @@ void PlatformMap::update(int dt)
             if(pointCollision(bullet->GetposX(),bullet->GetposY(),player.hitBox())){
                 bulletIt.remove();
                 if(!player.isHurt())player.damage(1);
+                continue;
             }
         }
 
@@ -226,12 +232,32 @@ void PlatformMap::update(int dt)
                     if(eni->pv()<=0){
                         player.gainXp(eni->xp(),this);
                         eni->onDying(&items);
+                        explosions.add(new Explosion(eni->posX(),eni->posY()));
                         eniIt.remove();
+                        continue;
                     }
                 }
             }
         }
 
+        SDL_Rect pos;
+        pos.x=bullet->GetposX();
+        pos.y=bullet->GetposY();
+        pos.h=1;
+        pos.w=1;
+
+        if(collisionWall(pos) ||
+           collisionTile(pos,3) ||
+            collisionTile(pos,4) ||
+            collisionTile(pos,5) ||
+            collisionTile(pos,6) ||
+            collisionTile(pos,10) ||
+            collisionTile(pos,11) ||
+            collisionTile(pos,12) ||
+            collisionTile(pos,13)
+           ){
+            bulletIt.remove();
+        }
     }
 
     //Gestion collision avec item
@@ -288,6 +314,12 @@ void PlatformMap::draw()
 
     drawBackground();
     drawMap();
+
+    CustomIterator<Explosion> explIt = explosions.newIterator();
+    while(explIt.hasNext()){
+        Explosion* explosion = explIt.next();
+        explosion->draw(this->cameraX(),this->cameraY());
+    }
 
     CustomIterator<Item> itemIt = items.newIterator();
     while(itemIt.hasNext()){
