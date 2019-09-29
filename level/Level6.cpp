@@ -28,6 +28,9 @@ Level6::~Level6()
 void Level6::initEni()
 {
 
+    enis.add(new Crab(400,280));
+    enis.add(new Crab(600,280));
+
     Door* doorR = new Door(1);
     doorR->remplace(0,this);
     addElement(doorR,11);

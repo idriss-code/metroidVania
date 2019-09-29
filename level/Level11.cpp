@@ -7,6 +7,8 @@
 #include "../MapElement/Door.h"
 #include "../MapElement/Sortie.h"
 
+#include "../Eni/Insect.h"
+
 extern Game* game;
 
 extern Player player;
@@ -23,6 +25,9 @@ Level11::~Level11()
 
 void Level11::initEni()
 {
+    enis.add(new Insect(500,300));
+    enis.add(new Insect(400,500));
+
     Door* doorR = new Door(1);
     doorR->remplace(0,this);
     addElement(doorR,11);

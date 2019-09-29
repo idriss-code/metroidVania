@@ -4,7 +4,7 @@
 Alien::Alien(int x,int y):WalkingEni(x,y)
 {
     //ctor
-    m_pv=3;
+    m_pv=10;
 
     m_height=64;
     m_width=40;

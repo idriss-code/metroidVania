@@ -3,7 +3,7 @@
 #include "../Player.h"
 #include "../MyGame.h"
 #include "../Eni/Crab.h"
-#include "../Eni/Robot.h"
+#include "../Eni/Jumper.h"
 #include "../Eni/Biped.h"
 #include "../Eni/Alien.h"
 
@@ -30,10 +30,10 @@ Level1::~Level1()
 void Level1::initEni()
 {
 
-    enis.add(new Crab(1000,300));
-    enis.add(new Alien(900,300));
-    enis.add(new Robot(700,280));
-    enis.add(new Biped(800,280));
+    enis.add(new Alien(1000,300));
+    enis.add(new Jumper(900,300));
+    enis.add(new Alien(700,280));
+    enis.add(new Jumper(800,280));
 
     if(!player.key(1))items.add(new Key(500,200,1));
     items.add(new Life(500,300));

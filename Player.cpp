@@ -161,7 +161,7 @@ Player::~Player()
 
 void Player::fire(CustomCollection<Bullet>* bullets)
 {
-    int bulletHeght=20;
+    int bulletHeght=21;
     if(status==DUCK)bulletHeght=-5;
 
     if(orientation==RIGHT){

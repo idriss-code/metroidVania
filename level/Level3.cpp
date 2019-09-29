@@ -3,6 +3,8 @@
 #include "../Player.h"
 #include "../MyGame.h"
 
+#include "../Eni/Insect.h"
+
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
 #include "../MapElement/Sortie.h"
@@ -23,6 +25,9 @@ Level3::~Level3()
 
 void Level3::initEni()
 {
+
+    enis.add(new Insect(500,300));
+
     Door* doorR = new Door(1);
     doorR->remplace(0,this);
     addElement(doorR,11);

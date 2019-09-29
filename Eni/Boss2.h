@@ -1,13 +1,13 @@
 #ifndef Boss2_H
 #define Boss2_H
 
-#include"Insect.h"
+#include"Robot.h"
 
 template <class T> class CustomCollection;
 class Item;
 class Bullet;
 
-class Boss2 : public Insect
+class Boss2 : public Robot
 {
     public:
         Boss2(int x,int y);

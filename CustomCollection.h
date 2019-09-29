@@ -111,7 +111,7 @@ bool CustomIterator<T>::hasNext()
         return !collection->vec.empty();
     }
 
-    if( std::next(it) != collection->vec.end()){
+    if(std::next(it) != collection->vec.end()){
         return true;
     }else{
         return false;

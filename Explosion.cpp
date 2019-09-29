@@ -1,7 +1,7 @@
 #include "Explosion.h"
 #include <iostream>
 #include <cmath>
-
+#include "gfx/SDL2_rotozoom.h"
 
 extern SDL_Window *ecran;
 
@@ -12,8 +12,8 @@ Explosion::Explosion(int x, int y)
     m_toDelete=false;
     state=0;
 
-    spriteW=96;
-    spriteH=96;
+    spriteW=67*2;
+    spriteH=48*2;
 
     maxSprite=12;
 }
@@ -45,7 +45,10 @@ void Explosion::draw(int camX,int camY)
 
 void Explosion::load()
 {
-    sprite=IMG_Load("./data/sprite/Explosion.png");
+    SDL_Surface* temp=IMG_Load("./data/sprite/enemy-death.png");
+    sprite=rotozoomSurfaceXY(temp,0,2,2,0);
+    SDL_FreeSurface(temp);
+
 }
 
 void Explosion::unload()

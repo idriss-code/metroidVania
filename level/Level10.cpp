@@ -27,6 +27,8 @@ Level10::~Level10()
 
 void Level10::initEni()
 {
+    enis.add(new Alien(600,280));
+    enis.add(new Alien(800,280));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);

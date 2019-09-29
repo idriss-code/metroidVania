@@ -3,9 +3,11 @@
 #include "../Player.h"
 #include "../MyGame.h"
 #include "../Eni/Crab.h"
-#include "../Eni/Robot.h"
+#include "../Eni/Jumper.h"
 #include "../Eni/Biped.h"
 #include "../Eni/Alien.h"
+
+#include "../Item/Life.h"
 
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
@@ -27,12 +29,13 @@ Level24::~Level24()
 
 void Level24::initEni()
 {
-    /*
-    enis.add(new Crab(1000,300));
-    enis.add(new Alien(900,300));
-    enis.add(new Robot(700,280));
-    enis.add(new Biped(800,280));
-*/
+
+    enis.add(new Alien(500,300));
+    enis.add(new Crab(700,280));
+    enis.add(new Jumper(400,280));
+
+    items.add(new Life(200,300));
+
     if(!player.key(1))items.add(new Key(500,200,1));
 
     Door* doorR = new Door(1);

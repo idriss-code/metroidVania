@@ -4,7 +4,7 @@
 Insect::Insect(int x,int y):FlyingEni(x,y)
 {
     //ctor
-    m_pv=3;
+    m_pv=20;
 
     m_height=64;
     m_width=40;

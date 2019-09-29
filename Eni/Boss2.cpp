@@ -7,9 +7,9 @@
 
 extern Player player;
 
-Boss2::Boss2(int x,int y):Insect(x,y)
+Boss2::Boss2(int x,int y):Robot(x,y)
 {
-
+    m_pv=400;
 }
 
 Boss2::~Boss2()

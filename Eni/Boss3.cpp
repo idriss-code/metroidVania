@@ -10,7 +10,7 @@ extern Game* game;
 
 Boss3::Boss3(int x,int y):Insect2(x,y)
 {
-
+    m_pv=500;
 }
 
 Boss3::~Boss3()
@@ -24,7 +24,8 @@ void Boss3::onDying(CustomCollection<Item>*)
         cout<<"the end"<<endl;
     #endif
 
-    ScreenMessage::loach("congratulation",game->currentScene(),20);
+    ScreenMessage::loach("congratulation",game->currentScene(),50);
+    ScreenMessage::loach("the end",game->currentScene(),50);
     dynamic_cast<MyGame *>(game)->reBoot();
 }
 

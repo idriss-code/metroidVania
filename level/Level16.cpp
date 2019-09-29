@@ -5,7 +5,7 @@
 #include "../Eni/Crab.h"
 #include "../Eni/Robot.h"
 #include "../Eni/Biped.h"
-#include "../Eni/Alien.h"
+#include "../Eni/jumper.h"
 
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
@@ -27,6 +27,9 @@ Level16::~Level16()
 
 void Level16::initEni()
 {
+    enis.add(new Jumper(400,280));
+    enis.add(new Robot(600,280));
+    enis.add(new Jumper(800,280));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);

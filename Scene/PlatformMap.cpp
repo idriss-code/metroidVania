@@ -213,6 +213,25 @@ void PlatformMap::update(int dt)
     while(bulletIt.hasNext()){
         Bullet* bullet = bulletIt.next();
         bullet->update();
+        SDL_Rect pos;
+        pos.x=bullet->GetposX();
+        pos.y=bullet->GetposY();
+        pos.h=1;
+        pos.w=1;
+
+        if(collisionWall(pos) ||
+           collisionTile(pos,3) ||
+            collisionTile(pos,4) ||
+            collisionTile(pos,5) ||
+            collisionTile(pos,6) ||
+            collisionTile(pos,10) ||
+            collisionTile(pos,11) ||
+            collisionTile(pos,12) ||
+            collisionTile(pos,13)
+           ){
+            bulletIt.remove();
+            continue;
+        }
 
         if(bullet->GetTag()==Bullet::ENI){
             if(pointCollision(bullet->GetposX(),bullet->GetposY(),player.hitBox())){
@@ -234,30 +253,13 @@ void PlatformMap::update(int dt)
                         eni->onDying(&items);
                         explosions.add(new Explosion(eni->posX(),eni->posY()));
                         eniIt.remove();
-                        continue;
                     }
+                    break;
                 }
             }
         }
 
-        SDL_Rect pos;
-        pos.x=bullet->GetposX();
-        pos.y=bullet->GetposY();
-        pos.h=1;
-        pos.w=1;
 
-        if(collisionWall(pos) ||
-           collisionTile(pos,3) ||
-            collisionTile(pos,4) ||
-            collisionTile(pos,5) ||
-            collisionTile(pos,6) ||
-            collisionTile(pos,10) ||
-            collisionTile(pos,11) ||
-            collisionTile(pos,12) ||
-            collisionTile(pos,13)
-           ){
-            bulletIt.remove();
-        }
     }
 
     //Gestion collision avec item

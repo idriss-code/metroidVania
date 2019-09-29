@@ -32,6 +32,8 @@ void Level17::initEni()
 
     enis.add(new Boss3(800,280));
     enis.add(new Jumper(700,280));
+    enis.add(new Jumper(500,280));
+    enis.add(new Jumper(300,280));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);

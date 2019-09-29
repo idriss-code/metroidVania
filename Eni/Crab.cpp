@@ -4,7 +4,7 @@
 Crab::Crab(int x,int y):WalkingEni(x,y)
 {
     //ctor
-    m_pv=2;
+    m_pv=10;
 
     m_height=50;
     m_width=40;

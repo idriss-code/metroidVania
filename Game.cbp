@@ -127,6 +127,8 @@
 		<Unit filename="Eni/Robot.h" />
 		<Unit filename="Eni/WalkingEni.cpp" />
 		<Unit filename="Eni/WalkingEni.h" />
+		<Unit filename="Explosion.cpp" />
+		<Unit filename="Explosion.h" />
 		<Unit filename="Item/DoubleJump.cpp" />
 		<Unit filename="Item/DoubleJump.h" />
 		<Unit filename="Item/Item.cpp" />

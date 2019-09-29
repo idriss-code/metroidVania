@@ -28,7 +28,8 @@ Level4::~Level4()
 void Level4::initEni()
 {
 
-    enis.add(new Alien(800,280));
+    enis.add(new Alien(400,280));
+    enis.add(new Alien(600,280));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);

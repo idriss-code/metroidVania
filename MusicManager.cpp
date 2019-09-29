@@ -13,6 +13,7 @@ MusicManager::MusicManager()
     file[2]="322725_Goa.mp3";
     file[3]="357874_Ambient__44khz_256kbps.mp3";
     file[4]="243749_evergreen.mp3";
+
 }
 
 MusicManager::~MusicManager()

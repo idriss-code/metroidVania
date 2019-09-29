@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <SDL_image.h>
+#include "gfx/SDL2_rotozoom.h"
 
 extern SDL_Window *ecran;
 
@@ -44,8 +45,15 @@ void Bullet::draw(int camX,int camY)
 
 void Bullet::load()
 {
-    m_sprite1=IMG_Load("./data/sprite/bullet1.png");
-    m_sprite2=IMG_Load("./data/sprite/bullet2.png");
+    SDL_Surface* temp;
+
+    temp=IMG_Load("./data/sprite/bullet1.png");
+    m_sprite1=rotozoomSurfaceXY(temp,0,2,2,0);
+    SDL_FreeSurface(temp);
+
+    temp=IMG_Load("./data/sprite/bullet2.png");
+    m_sprite2=rotozoomSurfaceXY(temp,0,2,2,0);
+    SDL_FreeSurface(temp);
 }
 
 void Bullet::unload()

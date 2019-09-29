@@ -11,6 +11,8 @@ extern SDL_Window *ecran;
 #include "Player.h"
 extern Player player;
 
+#include "util/benrandom.h"
+
 Eni::Eni(int x,int y)
 {
     m_velX=0;
@@ -21,7 +23,8 @@ Eni::Eni(int x,int y)
     animationDirection=1;
     damaged=false;
 
-    fireTime=fireCooldown=50;
+    fireCooldown=50;
+    fireTime=de(fireCooldown);
 }
 
 
@@ -147,7 +150,7 @@ void Eni::changeOrientation()
 
 void Eni::onDying(CustomCollection<Item>* items)
 {
-    if(de()==1){
+    if(de(15)==1){
         items->add(new Life(posX(),posY()));
     }
 }

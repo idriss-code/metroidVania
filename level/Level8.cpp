@@ -27,6 +27,8 @@ Level8::~Level8()
 
 void Level8::initEni()
 {
+    enis.add(new Crab(600,280));
+    enis.add(new Crab(800,280));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);
