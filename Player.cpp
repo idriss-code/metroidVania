@@ -14,7 +14,7 @@ extern SDL_Color JAUNE;
 extern SDL_Window *ecran;
 extern Game* game;
 
-Player::Player():pvBarre(m_pv,m_pvMax),xpBarre(m_xp,m_xpLvlSuivant)
+Player::Player():pvBarre(m_pv,m_pvMax)
 {
     m_height=64;
     m_width=20;
@@ -70,10 +70,8 @@ Player::Player():pvBarre(m_pv,m_pvMax),xpBarre(m_xp,m_xpLvlSuivant)
     pvBarre.setLLL();
     pvBarre.setPosition(10,10);
     pvBarre.setColor(50,255,50);
+    pvBarre.setBackColor(100,100,100);
 
-    xpBarre.setLLL();
-    xpBarre.setPosition(10,30);
-    xpBarre.setColor(200,50,50);
 }
 
 void  Player::init(int x,int y)
@@ -317,7 +315,6 @@ void Player::draw(int camX,int camY)
 
 
     pvBarre.afficheGD(ecran);
-    xpBarre.afficheBH(ecran);
 
     #ifdef DEBUG
     //affichage des infos

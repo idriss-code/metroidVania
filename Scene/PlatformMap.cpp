@@ -88,6 +88,8 @@ void PlatformMap::input()
                 switch(event.key.keysym.sym)//  Gestion des touches du clavier
                 {
                     case SDLK_ESCAPE:
+                    case SDLK_m:
+                    case SDLK_TAB:
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
                         menu=true;
                         break;
@@ -103,6 +105,7 @@ void PlatformMap::input()
                         break;
                     case SDLK_UP:
                     case SDLK_z:
+                    case SDLK_SPACE:
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
                         if(event.key.repeat == 0)player.goNorth();
                         break;
@@ -111,9 +114,11 @@ void PlatformMap::input()
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
                         if(event.key.repeat == 0)player.goSouth();
                         break;
-                    case SDLK_RETURN:
+                    case SDLK_LCTRL:
+                    case SDLK_RCTRL:
+                    case SDLK_w:
                         //event.key.keysym.sym=0;//evite les pb de repetition de touche
-
+                        player.fire(&bullets);
                         break;
                     default:
                         break;
@@ -193,7 +198,9 @@ void PlatformMap::update(int dt)
     while(eniIt.hasNext()){
         Eni* eni = eniIt.next();
         eni->update(this);
-        eni->fireUpdate(&bullets);
+        if(boxCollision(eni->hitBox(),this->cameraBox())){
+                eni->fireUpdate(&bullets);
+        }
         if(boxCollision(player.hitBox(),eni->hitBox())){
             player.damage(2);
         }

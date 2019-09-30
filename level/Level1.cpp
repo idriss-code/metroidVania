@@ -31,9 +31,7 @@ void Level1::initEni()
 {
 
     enis.add(new Alien(1000,300));
-    enis.add(new Jumper(900,300));
     enis.add(new Alien(700,280));
-    enis.add(new Jumper(800,280));
 
     if(!player.key(1))items.add(new Key(500,200,1));
     items.add(new Life(500,300));

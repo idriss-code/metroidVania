@@ -59,9 +59,9 @@ MyGame::MyGame():Game("Mission intersideral",800,600)
 
 // ***********  CHARGEMENT FONT **********************************
 
-    numberFont=TTF_OpenFont("data/pusab.ttf",10);
-    texteFont=TTF_OpenFont("data/Vibes.ttf",80);
-    menuFont=TTF_OpenFont("data/pusab.ttf",20);
+    numberFont=TTF_OpenFont("data/fonts/pusab.ttf",10);
+    texteFont=TTF_OpenFont("data/fonts/Vibes.ttf",80);
+    menuFont=TTF_OpenFont("data/fonts/pusab.ttf",20);
 
 
 //*********************************** CHARGEMENT SCENE **********************************

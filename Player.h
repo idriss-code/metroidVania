@@ -110,7 +110,6 @@ class Player
         int m_power;
 
         Barre pvBarre;
-        Barre xpBarre;
 
         //inventaire des key getter et adder
         bool m_key[10];
