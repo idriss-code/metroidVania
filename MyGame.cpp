@@ -39,6 +39,7 @@
 
 #include "MusicManager.h"
 #include "Eni.h"
+#include "Item/Item.h"
 #include "Explosion.h"
 
 using namespace std;
@@ -107,6 +108,7 @@ MyGame::MyGame():Game("Mission intersideral",800,600)
     m_musicManager= new MusicManager;
 
     Eni::loadSound();
+    Item::loadSound();
     Explosion::load();
 
 }
@@ -123,6 +125,7 @@ MyGame::~MyGame()
     delete m_musicManager;
 
     Eni::unloadSound();
+    Item::unloadSound();
     Explosion::unload();
 
 }

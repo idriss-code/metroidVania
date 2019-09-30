@@ -34,9 +34,9 @@ void Level1::initEni()
     enis.add(new Alien(700,280));
 
     if(!player.key(1))items.add(new Key(500,200,1));
-    items.add(new Life(500,300));
+    //items.add(new Life(500,300));
 
-    items.add(new SaveGame(400,200));
+    //items.add(new SaveGame(400,200));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);

@@ -5,6 +5,8 @@
 #include "../CustomCollection.h"
 #include "../Bullet.h"
 
+#include <cmath>
+
 extern Player player;
 
 Boss2::Boss2(int x,int y):Robot(x,y)

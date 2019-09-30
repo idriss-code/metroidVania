@@ -8,6 +8,8 @@
 extern Player player;
 extern Game* game;
 
+#include <cmath>
+
 Boss3::Boss3(int x,int y):Insect2(x,y)
 {
     m_pv=500;

@@ -212,6 +212,7 @@ void PlatformMap::update(int dt)
 
         if(boxCollision(player.hitBox(),item->hitBox())){
             item->action(this);
+            Item::playSound();
             itemIt.remove();
         }
     }
@@ -242,8 +243,8 @@ void PlatformMap::update(int dt)
 
         if(bullet->GetTag()==Bullet::ENI){
             if(pointCollision(bullet->GetposX(),bullet->GetposY(),player.hitBox())){
-                bulletIt.remove();
                 if(!player.isHurt())player.damage(1);
+                bulletIt.remove();
                 continue;
             }
         }
@@ -260,6 +261,7 @@ void PlatformMap::update(int dt)
                         eni->onDying(&items);
                         explosions.add(new Explosion(eni->posX(),eni->posY()));
                         eniIt.remove();
+                        Eni::deathSoundPlay();
                     }
                     break;
                 }

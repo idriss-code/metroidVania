@@ -2,6 +2,7 @@
 #define ITEM_H
 
 #include <SDL.h>
+#include <SDL_mixer.h>
 
 using namespace std;
 
@@ -23,6 +24,10 @@ class Item
         int height(){return m_height;}
         virtual void action(Scene* parent)=0;
 
+        static void playSound();
+        static void loadSound();
+        static void unloadSound();
+
         SDL_Rect hitBox()
         {
             SDL_Rect hitBox;
@@ -40,6 +45,8 @@ class Item
         int m_height;
 
 	private:
+
+	    static Mix_Chunk *sound;
 
 };
 

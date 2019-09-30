@@ -52,6 +52,8 @@ class Eni
         static void loadSound();
         static void unloadSound();
 
+        static void deathSoundPlay();
+
     protected:
 
         int m_posX;
@@ -80,6 +82,7 @@ class Eni
         int fireTime;
 
         static Mix_Chunk *fireSound;
+        static Mix_Chunk *deathSound;
 
     private:
 

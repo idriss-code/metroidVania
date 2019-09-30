@@ -126,7 +126,7 @@ template <class T>
 void CustomIterator<T>::remove()
 {
     delete *it;
-    collection->vec.erase(it);
+    it=collection->vec.erase(it);
     if(it != collection->vec.begin()){
         it--;
     }

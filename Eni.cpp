@@ -162,6 +162,11 @@ void Eni::loadSound()
     if(!fireSound) {
         std::cerr<<"Mix_LoadWAV: "<< Mix_GetError()<<std::endl;
     }
+
+    deathSound=Mix_LoadWAV("data/son/Randomize18.WAV");
+    if(!deathSound) {
+        std::cerr<<"Mix_LoadWAV: "<< Mix_GetError()<<std::endl;
+    }
     //**************** sfx *****************
 }
 
@@ -170,7 +175,18 @@ void Eni::unloadSound()
     //**************** sfx ****************
     Mix_FreeChunk(fireSound);
     fireSound=NULL;
+    Mix_FreeChunk(deathSound);
+    deathSound=NULL;
     //**************** sfx ****************
 }
 
+
+
+void Eni::deathSoundPlay()
+{
+    Mix_PlayChannel(-1, deathSound, 0);
+}
+
 Mix_Chunk * Eni::fireSound=NULL;
+Mix_Chunk * Eni::deathSound=NULL;
+

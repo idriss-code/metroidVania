@@ -5,6 +5,8 @@
 #include "../CustomCollection.h"
 #include "../Bullet.h"
 
+#include <cmath>
+
 extern Player player;
 
 Boss1::Boss1(int x,int y):Biped(x,y)
