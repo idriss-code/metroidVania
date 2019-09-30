@@ -31,6 +31,9 @@
 #include "level/Level22.h"
 #include "level/Level23.h"
 #include "level/Level24.h"
+#include "level/Level25.h"
+#include "level/Level26.h"
+#include "level/Level27.h"
 
 #include "Scene/Intro.h"
 
@@ -91,12 +94,16 @@ MyGame::MyGame():Game("Mission intersideral",800,600)
     m_level[22] = new Level22;
     m_level[23] = new Level23;
     m_level[24] = new Level24;
+    m_level[25] = new Level25;
+    m_level[26] = new Level26;
+    m_level[27] = new Level27;
 
     this->setCurrentScene(intro);
-
-    //this->setCurrentScene(level(17));
-    //player.init(128,128);
-
+/*
+    this->setCurrentScene(level(15));
+    player.init(128,128);
+    player.setKey(true,1);
+*/
     m_musicManager= new MusicManager;
 
     Eni::loadSound();

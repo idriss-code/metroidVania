@@ -4,6 +4,7 @@
 #include "../menu/SousMenu.h"
 #include "../menuItem/Quit.h"
 #include "../menuItem/Start.h"
+#include "../menuItem/LoadGame.h"
 #include "../menuItem/FullScreen.h"
 
 
@@ -25,10 +26,20 @@ MenuIntro::~MenuIntro()
     //dtor
 }
 
+#include <stdio.h>
+#include <stdlib.h>
 void MenuIntro::load()
 {
     mPrincipal= new Menu(290,370,menuFont,50);
-    mPrincipal->addElement(new Start("     Start"));
+    mPrincipal->addElement(new Start("  New Game"));
+
+    char fileName[]="game.sav";
+    FILE* save = fopen(fileName,"r");
+    if(save){
+        mPrincipal->addElement(new LoadGame("     Load"));
+    }
+    fclose(save);
+
     mPrincipal->addElement(new FullScreen("Full Screen"));
     mPrincipal->addElement(new Quit("      Quit"));
     Menu::setMenuActif(mPrincipal);

@@ -9,7 +9,7 @@ class Level24 : public PlatformMap
     public:
         Level24();
         virtual ~Level24();
-        int level(){return 1;}
+        int level(){return 24;}
 
     protected:
 

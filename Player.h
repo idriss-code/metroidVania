@@ -86,6 +86,9 @@ class Player
         int getPart(){return currentPart;}
         void resetJump(){if(m_doubleJump)dJump=true;}
 
+        void loadSave(const char* fileName);
+        void writeSave(const char* fileName);
+
     protected:
 
     private:

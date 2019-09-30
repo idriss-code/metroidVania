@@ -22,6 +22,7 @@ Player::Player():pvBarre(m_pv,m_pvMax)
 
     spriteWidth=80*2;
     spriteHeight=80*2;
+    XP_LVL=33;
 
 
     SDL_Surface* sprite;
@@ -98,7 +99,7 @@ void  Player::init(int x,int y)
 
     m_xp=0;
     m_lvl=1;
-    m_xpLvlSuivant=XP_LVL=33;
+    m_xpLvlSuivant=XP_LVL;
 
     m_pv=m_pvMax=10;
     m_power=1;
@@ -378,4 +379,73 @@ void Player::setCurrentRoom(int room,int part)
     rooms[room-1][part]=true;
     currentRoom = room-1;
     currentPart = part;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "MyGame.h"
+#include "Map/MapProto.h"
+
+void Player::loadSave(const char* fileName)
+{
+    int level;
+
+    FILE* save = fopen(fileName,"r");
+    fread(&level,sizeof(int),1,save);
+    fread(&m_posX,sizeof(int),1,save);
+    fread(&m_posY,sizeof(int),1,save);
+    fread(&m_xp,sizeof(int),1,save);
+    fread(&m_lvl,sizeof(int),1,save);
+    fread(&m_xpLvlSuivant,sizeof(int),1,save);
+    fread(&m_pv,sizeof(int),1,save);
+    fread(&m_pvMax,sizeof(int),1,save);
+    fread(&m_power,sizeof(int),1,save);
+    fread(&m_doubleJump,sizeof(bool),1,save);
+
+    for(int i=0;i<10;i++){
+        fread(&m_key[i],sizeof(bool),1,save);
+    }
+
+    for(int i=0;i<LVL;i++){
+        for(int j=0;j<PART;j++){
+            fread(&rooms[i][j],sizeof(bool),1,save);
+        }
+    }
+
+    fclose(save);
+
+    m_posY+=20;
+
+    m_velX =0;
+    m_velY =0;
+    game->goScene(dynamic_cast<MyGame *>(game)->level(level));
+}
+
+void Player::writeSave(const char* fileName)
+{
+    int level=currentRoom+1;
+
+    FILE* save = fopen(fileName,"w");
+    fwrite(&level,sizeof(int),1,save);
+    fwrite(&m_posX,sizeof(int),1,save);
+    fwrite(&m_posY,sizeof(int),1,save);
+    fwrite(&m_xp,sizeof(int),1,save);
+    fwrite(&m_lvl,sizeof(int),1,save);
+    fwrite(&m_xpLvlSuivant,sizeof(int),1,save);
+    fwrite(&m_pv,sizeof(int),1,save);
+    fwrite(&m_pvMax,sizeof(int),1,save);
+    fwrite(&m_power,sizeof(int),1,save);
+    fwrite(&m_doubleJump,sizeof(bool),1,save);
+
+    for(int i=0;i<10;i++){
+        fwrite(&m_key[i],sizeof(bool),1,save);
+    }
+
+    for(int i=0;i<LVL;i++){
+        for(int j=0;j<PART;j++){
+            fwrite(&rooms[i][j],sizeof(bool),1,save);
+        }
+    }
+
+    fclose(save);
 }

@@ -135,6 +135,31 @@ void BigMap::load()
     rooms[id-1][1] = new Room(x+1,y+0,WALL,WALL,NO,NO);
     rooms[id-1][2] = new Room(x+2,y+0,WALL,WALL,NO,DOOR);
 
+
+    x=18;
+    y=1;
+    id=25;
+    rooms[id-1][0] = new Room(x+0,y+0,WALL,WALL,DOOR,WALL);
+
+
+    x=17;
+    y=6;
+    id=26;
+    rooms[id-1][0] = new Room(x+0,y+0,WALL,WALL,DOOR,WALL);
+
+
+    x=17;
+    y=9;
+    id=27;
+    rooms[id-1][0] = new Room(x+0,y+0,WALL,WALL,DOOR,WALL);
+
+
+
+
+
+
+
+
     for(int i=1;i<4;i++){
         if(player.key(i)){
             items.add(new Key(700,30+i*30,i));

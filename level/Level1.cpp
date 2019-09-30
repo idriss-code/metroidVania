@@ -9,7 +9,7 @@
 
 #include "../Item/Key.h"
 #include "../Item/Life.h"
-#include "../Item/DoubleJump.h"
+#include "../Item/SaveGame.h"
 #include "../MapElement/Door.h"
 #include "../MapElement/Sortie.h"
 
@@ -36,7 +36,7 @@ void Level1::initEni()
     if(!player.key(1))items.add(new Key(500,200,1));
     items.add(new Life(500,300));
 
-    //items.add(new DoubleJump(400,200));
+    items.add(new SaveGame(400,200));
 
     Door* doorR = new Door(1);
     doorR->remplace(0,this);

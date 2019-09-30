@@ -32,6 +32,11 @@ void Level22::initEni()
     doorL->remplace(0,this);
     addElement(doorL,10);
 
+    Door* doorw = new Door(1);
+    doorw->remplace(0,this);
+    addElement(doorw,11);
+
     addElement(new Sortie(dynamic_cast<MyGame *>(game)->level(23),718,672),3);
     addElement(new Sortie(dynamic_cast<MyGame *>(game)->level(21),1100,256),5);
+    addElement(new Sortie(dynamic_cast<MyGame *>(game)->level(25),52,256),4);
 }

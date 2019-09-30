@@ -137,6 +137,8 @@
 		<Unit filename="Item/Key.h" />
 		<Unit filename="Item/Life.cpp" />
 		<Unit filename="Item/Life.h" />
+		<Unit filename="Item/SaveGame.cpp" />
+		<Unit filename="Item/SaveGame.h" />
 		<Unit filename="MapElement/Door.cpp" />
 		<Unit filename="MapElement/Door.h" />
 		<Unit filename="MapElement/MapElement.cpp" />
@@ -219,6 +221,12 @@
 		<Unit filename="level/Level23.h" />
 		<Unit filename="level/Level24.cpp" />
 		<Unit filename="level/Level24.h" />
+		<Unit filename="level/Level25.cpp" />
+		<Unit filename="level/Level25.h" />
+		<Unit filename="level/Level26.cpp" />
+		<Unit filename="level/Level26.h" />
+		<Unit filename="level/Level27.cpp" />
+		<Unit filename="level/Level27.h" />
 		<Unit filename="level/Level3.cpp" />
 		<Unit filename="level/Level3.h" />
 		<Unit filename="level/Level4.cpp" />
@@ -237,8 +245,8 @@
 		<Unit filename="menuItem/Continue.h" />
 		<Unit filename="menuItem/FullScreen.cpp" />
 		<Unit filename="menuItem/FullScreen.h" />
-		<Unit filename="menuItem/LoachMenu.cpp" />
-		<Unit filename="menuItem/LoachMenu.h" />
+		<Unit filename="menuItem/LoadGame.cpp" />
+		<Unit filename="menuItem/LoadGame.h" />
 		<Unit filename="menuItem/Quit.cpp" />
 		<Unit filename="menuItem/Quit.h" />
 		<Unit filename="menuItem/Start.cpp" />

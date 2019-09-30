@@ -107,6 +107,9 @@ T* CustomIterator<T>::next()
 template <class T>
 bool CustomIterator<T>::hasNext()
 {
+    if(collection->vec.empty()) return false;
+    if(it==collection->vec.end())return false;
+
     if(begin){
         return !collection->vec.empty();
     }
@@ -124,7 +127,12 @@ void CustomIterator<T>::remove()
 {
     delete *it;
     collection->vec.erase(it);
-    if(it != collection->vec.begin())it--;
+    if(it != collection->vec.begin()){
+        it--;
+    }
+    if(it == collection->vec.begin()){
+        begin = true;
+    }
 }
 
 #endif // CUSTOMCOLLECTION_H
