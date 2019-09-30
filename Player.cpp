@@ -84,6 +84,7 @@ void  Player::init(int x,int y)
 
     falling = true;
     orientation=RIGHT;
+    m_doubleJump=false;
 
     for (int i=0;i<3;i++){
         m_key[i]=false;
