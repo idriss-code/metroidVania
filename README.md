@@ -8,8 +8,20 @@ a simple SDL game
 
 ### install
 
+#### windows
+
 download on itch.io
 [download](https://benlamouche.itch.io/mission-intersideral)
+
+#### linux
+
+after git clone
+
+```bash
+cd metroidVania
+make
+./bin/main
+```
 
 ### my itch.io page
 
