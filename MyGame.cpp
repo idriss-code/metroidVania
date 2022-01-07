@@ -71,6 +71,51 @@ MyGame::MyGame():Game("Mission intersideral",800,600)
 //*********************************** CHARGEMENT SCENE **********************************
     intro = new Intro();
 
+    m_level[1]=NULL;
+
+
+    this->setCurrentScene(intro);
+/*
+    this->setCurrentScene(level(25));
+    player.init(128,128);
+    player.setKey(true,1);
+*/
+    m_musicManager= new MusicManager;
+
+    Eni::loadSound();
+    Item::loadSound();
+    Explosion::load();
+
+}
+
+MyGame::~MyGame()
+{
+    //dtor
+    //  fermeture du programme déchargement des modules et sprites
+    unloadLevel();
+
+    TTF_CloseFont(texteFont);
+    TTF_CloseFont(menuFont);
+    TTF_CloseFont(numberFont);
+
+    delete m_musicManager;
+
+    Eni::unloadSound();
+    Item::unloadSound();
+    Explosion::unload();
+
+}
+
+MapProto* MyGame::level(int val)
+{
+
+    return m_level[val];
+}
+
+void MyGame::begining()
+{
+    if(m_level[1]!=NULL)unloadLevel();
+
     m_level[1] = new Level1;
     m_level[2] = new Level2;
     m_level[3] = new Level3;
@@ -99,50 +144,21 @@ MyGame::MyGame():Game("Mission intersideral",800,600)
     m_level[26] = new Level26;
     m_level[27] = new Level27;
 
-    this->setCurrentScene(intro);
-/*
-    this->setCurrentScene(level(15));
-    player.init(128,128);
-    player.setKey(true,1);
-*/
-    m_musicManager= new MusicManager;
-
-    Eni::loadSound();
-    Item::loadSound();
-    Explosion::load();
-
-}
-
-MyGame::~MyGame()
-{
-    //dtor
-    //  fermeture du programme déchargement des modules et sprites
-
-    TTF_CloseFont(texteFont);
-    TTF_CloseFont(menuFont);
-    TTF_CloseFont(numberFont);
-
-    delete m_musicManager;
-
-    Eni::unloadSound();
-    Item::unloadSound();
-    Explosion::unload();
-
-}
-
-MapProto* MyGame::level(int val)
-{
-
-    return m_level[val];
-}
-
-void MyGame::begining()
-{
     player.init(128,128);
     this->goScene(level(1));
 }
 
 void MyGame::reBoot()
 {
+
     this->goScene(intro);
+}
+
+
+void MyGame::unloadLevel()
+{
+    for(int i=1;i<28;i++)
+    {
+        delete m_level[i];
+    }
 }

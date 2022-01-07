@@ -388,9 +388,11 @@ void Player::setCurrentRoom(int room,int part)
 
 void Player::loadSave(const char* fileName)
 {
+    this->init(0,0);
     int level;
 
-    FILE* save = fopen(fileName,"r");
+    FILE* save = fopen(fileName,"rb");
+
     fread(&level,sizeof(int),1,save);
     fread(&m_posX,sizeof(int),1,save);
     fread(&m_posY,sizeof(int),1,save);
@@ -418,6 +420,8 @@ void Player::loadSave(const char* fileName)
 
     m_velX =0;
     m_velY =0;
+
+    cout<<"level: "<<level<<endl;
     game->goScene(dynamic_cast<MyGame *>(game)->level(level));
 }
 
@@ -425,7 +429,7 @@ void Player::writeSave(const char* fileName)
 {
     int level=currentRoom+1;
 
-    FILE* save = fopen(fileName,"w");
+    FILE* save = fopen(fileName,"wb");
     fwrite(&level,sizeof(int),1,save);
     fwrite(&m_posX,sizeof(int),1,save);
     fwrite(&m_posY,sizeof(int),1,save);

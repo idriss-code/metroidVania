@@ -150,7 +150,7 @@ void Eni::changeOrientation()
 
 void Eni::onDying(CustomCollection<Item>* items)
 {
-    if(de(15)==1){
+    if(de(8)==1){
         items->add(new Life(posX(),posY()));
     }
 }

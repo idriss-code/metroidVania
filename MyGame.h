@@ -28,6 +28,8 @@ class MyGame : public Game
         MapProto* m_level[100];
         MusicManager* m_musicManager;
 
+        void unloadLevel();
+
 
 
 };
