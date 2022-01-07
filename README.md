@@ -15,9 +15,9 @@ download on itch.io
 
 #### linux
 
-after git clone
-
 ```bash
+sudo apt install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+git clone https://github.com/idriss-code/metroidVania.git
 cd metroidVania
 make
 ./bin/main
