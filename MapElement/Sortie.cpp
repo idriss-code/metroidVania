@@ -19,7 +19,7 @@ Sortie::~Sortie()
     //dtor
 }
 
-Sortie::action()
+int Sortie::action()
 {
     game->goScene(m_destination);
     player.setPosition(m_x,m_y);

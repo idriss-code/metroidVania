@@ -5,7 +5,7 @@
 #include "../Eni/Crab.h"
 #include "../Eni/Robot.h"
 #include "../Eni/Biped.h"
-#include "../Eni/jumper.h"
+#include "../Eni/Jumper.h"
 
 #include "../Item/Key.h"
 #include "../MapElement/Door.h"
