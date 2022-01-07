@@ -1,5 +1,6 @@
 program_CXX_SRCS = $(wildcard *.cpp) $(wildcard Scene/*.cpp) $(wildcard menu/*.cpp) \
-$(wildcard menuItem/*.cpp) $(wildcard core/*.cpp) $(wildcard util/*.cpp) 
+$(wildcard menuItem/*.cpp) $(wildcard core/*.cpp) $(wildcard util/*.cpp) $(wildcard Eni/*.cpp) \
+$(wildcard Item/*.cpp) $(wildcard level/*.cpp) $(wildcard Map/*.cpp) $(wildcard MapElement/*.cpp)
 program_CXX_OBJS = ${program_CXX_SRCS:.cpp=.o}
 program_C_SRCS = $(wildcard gfx/*.c)
 program_C_OBJS = ${program_C_SRCS:.c=.o}
