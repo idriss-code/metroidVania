@@ -1,7 +1,7 @@
 #include "Eni.h"
 #include <iostream>
 extern SDL_Window *ecran;
-#include "../gfx/SDL2_rotozoom.h"
+#include "gfx/SDL2_rotozoom.h"
 
 #include "CustomCollection.h"
 #include "Bullet.h"
@@ -101,7 +101,7 @@ void Eni::draw(int camX,int camY)
             src.x=sprite->w-(spriteWidth*(1+spriteNumber));
             break;
     }
-    //si il y a dommage on créé un sprite rouge
+    //si il y a dommage on crï¿½ï¿½ un sprite rouge
     if(damaged){
         sprite =rotozoomSurfaceXY(sprite,0,1,1,0);
         SDL_SetSurfaceColorMod(sprite,255,0,0);
@@ -109,7 +109,7 @@ void Eni::draw(int camX,int camY)
 
     SDL_BlitSurface(sprite,&src,SDL_GetWindowSurface(ecran),&pos);
 
-    //si il y a dtruit on créé le sprite rouge
+    //si il y a dtruit on crï¿½ï¿½ le sprite rouge
     if(damaged){
         damaged = false;
         SDL_FreeSurface(sprite);
