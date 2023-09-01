@@ -26,7 +26,3 @@ make
 ### my itch.io page
 
 [benlamouche.itch.io](https://benlamouche.itch.io/)
-
-### my website
-
-[benlamouche](http://benlamouche.ddns.net/)
